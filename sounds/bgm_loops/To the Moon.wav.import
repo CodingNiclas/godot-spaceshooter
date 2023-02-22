@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample"
+
+[deps]
+
+source_file="res://sounds/bgm_loops/To the Moon.wav"
+dest_files=[ "res://.import/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

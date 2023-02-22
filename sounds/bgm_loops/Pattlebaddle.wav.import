@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample"
+
+[deps]
+
+source_file="res://sounds/bgm_loops/Pattlebaddle.wav"
+dest_files=[ "res://.import/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

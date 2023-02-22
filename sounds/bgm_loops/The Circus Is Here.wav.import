@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample"
+
+[deps]
+
+source_file="res://sounds/bgm_loops/The Circus Is Here.wav"
+dest_files=[ "res://.import/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
