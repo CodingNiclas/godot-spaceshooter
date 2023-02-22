@@ -23,7 +23,7 @@ func _ready():
 func _process(delta):
 	var hp = globals.get_player_hp()
 	health_label.text = "HP: "+String(hp)
-	score_label.text = "Score:"+String(globals.score)
+	score_label.text = "Score: "+String(globals.score)
 	if hp<=0:	
 		go_screen.visible = true
 		globals.set_game_over(true)

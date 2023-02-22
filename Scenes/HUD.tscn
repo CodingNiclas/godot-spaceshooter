@@ -60,6 +60,6 @@ margin_right = 1017.0
 margin_bottom = 14.0
 grow_horizontal = 0
 theme = ExtResource( 4 )
-text = "Score:0"
+text = "Score: 0"
 
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]

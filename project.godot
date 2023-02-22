@@ -29,6 +29,10 @@ config/icon="res://icon.png"
 GlobalStats="*res://Scenes/GlobalStats.gd"
 Bgm="*res://Scenes/BGM.tscn"
 
+[display]
+
+window/stretch/mode="2d"
+
 [editor]
 
 version_control_autoload_on_startup=true
