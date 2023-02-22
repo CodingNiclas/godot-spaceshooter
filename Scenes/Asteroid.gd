@@ -7,13 +7,14 @@ signal player_hit
 # var b = "text"
 onready var rb = get_node("RigidBody2D")
 onready var fx = get_node("ExplosionParticles")
+onready var hit_audio = get_node("HitAudio")
 onready var sprite = get_node("RigidBody2D/Asteroid4")
 onready var globals = get_node("/root/GlobalStats")
 
 var destroyed = false
 var rotation_direction = rand_range(-1, 1)
 var max_y = 650
-var variation = 0
+var destruction_points = 10
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,11 +40,14 @@ func _on_RigidBody2D_body_entered(_body):
 		globals.remove(rb)
 		globals.remove(_body.get_parent())
 		fx.emitting = true
+		hit_audio.play()		
 		destroyed = true
+		globals.score = globals.score + destruction_points
 	elif(_body.is_in_group("player")):
 		fx.position = rb.position
 		globals.remove(rb)
 		fx.emitting = true
+		hit_audio.play()
 		destroyed = true
 		var alive = globals.damage_player(1) #reduce player_health
 		#if !alive:

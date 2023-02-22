@@ -4,14 +4,15 @@ export(Array, AudioStream) var shot_sounds
 export(Animation) var hit_anim
 
 
-var projectile_scene = load("res://Projectile.tscn")
+var projectile_scene = load("res://Scenes/Projectile.tscn")
 onready var proj_spawn_pos = get_node("KinematicBody2D/ProjectileSpawnPos")
 onready var body = get_node("KinematicBody2D")
 onready var globals = get_node("/root/GlobalStats")
 onready var proj_audio = get_node("KinematicBody2D/ProjectileSpawnPos/ProjectileAudioPlayer")
 onready var ship_audio = get_node("KinematicBody2D/ShipAudioPlayer")
 onready var ship_animator = get_node("KinematicBody2D/AnimationPlayer")
-
+#onready var tl = globals.get_top_left()
+#onready var br = globals.get_bottom_right()
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,6 +20,7 @@ onready var ship_animator = get_node("KinematicBody2D/AnimationPlayer")
 var mouse_pos = position
 var thresh = 10
 var hp
+var top_left = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +36,12 @@ func _process(delta):
 		body.global_position = body.global_position + (vector.normalized() * 1000 * delta)
 	else:
 		body.global_position = mouse_pos
+	var pos = body.global_position
+	var tl = globals.get_top_left()
+	var br = globals.get_bottom_right()
+	body.global_position.x = clamp(pos.x,tl.x,br.x)
+	body.global_position.y = clamp(pos.y,tl.y,br.y)
+
 
 func _input(event):
 	if globals.is_game_over():

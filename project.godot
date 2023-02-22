@@ -21,13 +21,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Untitled Space Shooter"
-run/main_scene="res://Level.tscn"
+run/main_scene="res://Scenes/Level.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GlobalStats="*res://GlobalStats.gd"
-Bgm="*res://BGM.tscn"
+GlobalStats="*res://Scenes/GlobalStats.gd"
+Bgm="*res://Scenes/BGM.tscn"
 
 [editor]
 

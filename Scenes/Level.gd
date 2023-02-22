@@ -1,6 +1,6 @@
 extends Node2D
-var asteroid_scene = load("res://Asteroid.tscn")
-#var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
+var asteroid_scene = load("res://Scenes/Asteroid.tscn")
+var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
 onready var globals = get_node("/root/GlobalStats")
 onready var asteroid_timer = get_node("AsteroidTimer")
 onready var player = get_node("Player")
@@ -11,7 +11,10 @@ onready var player = get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	#set edges of playfield:
+	globals.set_top_left(get_node("BaseBlue640X640/TopLeft").global_position)
+	globals.set_bottom_right(get_node("BaseBlue640X640/BottomRight").global_position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +22,8 @@ func _ready():
 #	pass
 
 func _on_AsteroidTimer_timeout():
-	var asteroid = asteroid_scene.instance()
+	var c1 = rand_range(0,1)>globals.asteroid_ratio	
+	var asteroid = asteroid_scene.instance() if c1 else big_asteroid_scene.instance() 
 	var asterRB = asteroid.get_node("RigidBody2D")
 	var left = get_node("AsteroidSpawnLeft").position
 	var right = get_node("AsteroidSpawnRight").position
