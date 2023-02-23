@@ -15,12 +15,14 @@ var destroyed = false
 var rotation_direction = rand_range(-1, 1)
 var max_y = 650
 var destruction_points = 10
-
+var gravity
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#rb.gravity_scale = globals.randomized_asteroid_gravity()
 	#self.connect("player_dead",self.get_parent(),"_on_player_dead")
 	self.connect("player_hit",self.get_parent(),"_on_player_hit")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,8 +31,12 @@ func _process(delta):
 		sprite.set_rotation(sprite.rotation+(delta*rotation_direction))
 		if rb.position.y > max_y:
 			globals.remove(self)
+		if(gravity!=null):
+			rb.add_central_force(gravity*delta*10)
 	#print("foo")
 
+func _initialize():
+	rb.linear_velocity = gravity*500
 
 func _on_RigidBody2D_body_entered(_body):
 	if(_body.is_in_group("asteroid")):
@@ -47,7 +53,7 @@ func _on_RigidBody2D_body_entered(_body):
 		fx.position = rb.position
 		globals.remove(rb)
 		fx.emitting = true
-		hit_audio.play()
+		#hit_audio.play()
 		destroyed = true
 		var alive = globals.damage_player(1) #reduce player_health
 		#if !alive:

@@ -23,15 +23,19 @@ var splitted = false
 var rotation_direction = rand_range(-1, 1)
 var max_y = 650
 var destruction_points = 20
-
+var gravity
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rb.linear_velocity = Vector2(0,100)
-	initial_velocity = rb.linear_velocity
+	#rb.linear_velocity = Vector2(0,100)
+	#rb.gravity_scale = globals.randomized_asteroid_gravity()
 	#self.connect("player_dead",self.get_parent(),"_on_player_dead")
 	self.connect("player_hit",self.get_parent(),"_on_player_hit")
 
+func _initialize():
+	rb.linear_velocity = gravity*500
+	initial_velocity = rb.linear_velocity
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,6 +43,8 @@ func _process(delta):
 		sprite.set_rotation(sprite.rotation+(delta*rotation_direction))
 		if rb.position.y > max_y:
 			globals.remove(self)
+		#apply gravity:
+		rb.add_central_force(gravity*delta*10)
 	elif !splitted:
 		_newSplit(Vector2(1,1))
 		_newSplit(Vector2(-1,1))
@@ -48,12 +54,14 @@ func _process(delta):
 func _newSplit(_dir):
 	var a1 = asteroid_scene.instance()
 	var a1_rb = a1.get_node("RigidBody2D")
-	a1_rb.linear_velocity = 150*_dir
+	#a1_rb.linear_velocity = 150*_dir
 	self.get_parent().add_child(a1)
 	a1_rb.global_position = collision_position
+	a1.gravity = _dir.normalized()
 	#a1.global_position = self.global_position
 	splitted = true
 	print(a1.position)
+	a1_rb.linear_velocity = a1.gravity*100
 	
 
 func _on_RigidBody2D_body_entered(_body):

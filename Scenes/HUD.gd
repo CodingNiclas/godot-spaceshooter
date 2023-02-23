@@ -4,6 +4,7 @@ signal restart
 
 onready var health_label = get_node("HealthLabel")
 onready var score_label = get_node("ScoreLabel")
+onready var lvl_label = get_node("LvlLabel")
 
 onready var go_screen = get_node("GameOverScreen")
 onready var globals = get_node("/root/GlobalStats")
@@ -24,6 +25,7 @@ func _process(delta):
 	var hp = globals.get_player_hp()
 	health_label.text = "HP: "+String(hp)
 	score_label.text = "Score: "+String(globals.score)
+	lvl_label.text = "lvl: "+String(globals.phase)
 	if hp<=0:	
 		go_screen.visible = true
 		globals.set_game_over(true)

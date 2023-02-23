@@ -62,4 +62,11 @@ grow_horizontal = 0
 theme = ExtResource( 4 )
 text = "Score: 0"
 
+[node name="LvlLabel" type="Label" parent="."]
+material = SubResource( 1 )
+margin_top = 50.0
+margin_right = 65.0
+theme = ExtResource( 4 )
+text = "lvl: 1"
+
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]

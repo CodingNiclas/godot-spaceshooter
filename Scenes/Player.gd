@@ -2,7 +2,8 @@ extends Node2D
 
 export(Array, AudioStream) var shot_sounds
 export(Animation) var hit_anim
-
+export(AudioStream) var hit_sound
+export(AudioStream) var die_sound
 
 var projectile_scene = load("res://Scenes/Projectile.tscn")
 onready var proj_spawn_pos = get_node("KinematicBody2D/ProjectileSpawnPos")
@@ -11,6 +12,7 @@ onready var globals = get_node("/root/GlobalStats")
 onready var proj_audio = get_node("KinematicBody2D/ProjectileSpawnPos/ProjectileAudioPlayer")
 onready var ship_audio = get_node("KinematicBody2D/ShipAudioPlayer")
 onready var ship_animator = get_node("KinematicBody2D/AnimationPlayer")
+
 #onready var tl = globals.get_top_left()
 #onready var br = globals.get_bottom_right()
 # Declare member variables here. Examples:
@@ -62,6 +64,18 @@ func _input(event):
 		proj_audio.play()
 
 func hit():
+	ship_audio.stream = hit_sound
 	ship_audio.play()
 	ship_animator.play("player_ship_hit")
 	#player_audio
+
+func die():
+	ship_audio.stream = die_sound
+	ship_audio.play()
+	body.collision_mask = 0
+	body.collision_layer = 0
+
+func revive():
+	body.collision_mask = 1
+	body.collision_layer = 1
+	
