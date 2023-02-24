@@ -21,7 +21,7 @@ var initial_velocity = Vector2(0,0)
 var destroyed = false
 var splitted = false
 var rotation_direction = rand_range(-1, 1)
-var max_y = 650
+onready var max_y = globals.bottom_right.y
 var destruction_points = 20
 var gravity
 
@@ -56,12 +56,11 @@ func _newSplit(_dir):
 	var a1_rb = a1.get_node("RigidBody2D")
 	#a1_rb.linear_velocity = 150*_dir
 	self.get_parent().add_child(a1)
-	a1_rb.global_position = collision_position
+	a1_rb.global_position = collision_position+_dir*25
 	a1.gravity = _dir.normalized()
 	#a1.global_position = self.global_position
 	splitted = true
-	print(a1.position)
-	a1_rb.linear_velocity = a1.gravity*100
+	a1_rb.linear_velocity = a1.gravity*collision_velocity.abs()*1.5
 	
 
 func _on_RigidBody2D_body_entered(_body):

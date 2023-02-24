@@ -28,6 +28,7 @@ position = Vector2( 0, -37 )
 
 [node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="KinematicBody2D/ProjectileSpawnPos"]
 position = Vector2( 0, 37 )
+volume_db = -9.0
 
 [node name="SpaceshipRed" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 0, 1 )
@@ -44,3 +45,9 @@ anims/player_ship_hit = ExtResource( 12 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
 build_mode = 1
 polygon = PoolVector2Array( -40, 40, -48, 40, -48, 8, -16, -8, -16, -40, 16, -40, 16, -8, 48, 8, 48, 40 )
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="ShotTimer" to="." method="spawn_projectile"]

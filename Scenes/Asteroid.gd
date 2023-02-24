@@ -13,7 +13,7 @@ onready var globals = get_node("/root/GlobalStats")
 
 var destroyed = false
 var rotation_direction = rand_range(-1, 1)
-var max_y = 650
+onready var max_y = globals.bottom_right.y
 var destruction_points = 10
 var gravity
 

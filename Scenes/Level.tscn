@@ -438,6 +438,7 @@ position = Vector2( 512, 550 )
 [node name="Control" parent="." instance=ExtResource( 6 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 512, 300 )
 zoom = Vector2( 2, 2 )
 
@@ -468,5 +469,8 @@ position = Vector2( 160, 300 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 5 )
 one_way_collision_margin = 0.0
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 600, 1024 )
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

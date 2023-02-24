@@ -12,6 +12,7 @@ onready var globals = get_node("/root/GlobalStats")
 onready var proj_audio = get_node("KinematicBody2D/ProjectileSpawnPos/ProjectileAudioPlayer")
 onready var ship_audio = get_node("KinematicBody2D/ShipAudioPlayer")
 onready var ship_animator = get_node("KinematicBody2D/AnimationPlayer")
+onready var shot_timer = get_node("ShotTimer")
 
 #onready var tl = globals.get_top_left()
 #onready var br = globals.get_bottom_right()
@@ -48,20 +49,22 @@ func _process(delta):
 func _input(event):
 	if globals.is_game_over():
 		return
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion or event is InputEventScreenTouch:
 	   mouse_pos = event.position
 	if event.is_action_pressed("fire"):
-		print("shot!")
-		var shot = projectile_scene.instance()
-		#get_node("KinematicBody2D").add_child(shot)
-		get_tree().get_root().get_node("Node2D_Level").add_child(shot)
-		shot.global_position = proj_spawn_pos.global_position
-		print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
-		# play randomized sfx
-		var n = randi()%shot_sounds.size()
-		print("playing sfx "+String(n))
-		proj_audio.stream = shot_sounds[n]
-		proj_audio.play()
+		spawn_projectile()
+
+func spawn_projectile():
+	var shot = projectile_scene.instance()
+	#get_node("KinematicBody2D").add_child(shot)
+	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
+	shot.global_position = proj_spawn_pos.global_position
+	print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
+	# play randomized sfx
+	var n = randi()%shot_sounds.size()
+	print("playing sfx "+String(n))
+	proj_audio.stream = shot_sounds[n]
+	proj_audio.play()
 
 func hit():
 	ship_audio.stream = hit_sound
@@ -70,12 +73,14 @@ func hit():
 	#player_audio
 
 func die():
+	shot_timer.stop()	
 	ship_audio.stream = die_sound
 	ship_audio.play()
 	body.collision_mask = 0
 	body.collision_layer = 0
 
 func revive():
+	shot_timer.start()	
 	body.collision_mask = 1
 	body.collision_layer = 1
 	

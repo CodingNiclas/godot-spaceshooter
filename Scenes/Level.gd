@@ -2,6 +2,7 @@ extends Node2D
 var asteroid_scene = load("res://Scenes/Asteroid.tscn")
 var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
 onready var globals = get_node("/root/GlobalStats")
+onready var bgm = get_node("/root/Bgm")
 onready var asteroid_timer = get_node("AsteroidTimer")
 onready var player = get_node("Player")
 # Declare member variables here. Examples:
@@ -51,6 +52,7 @@ func _on_player_hit():
 	else:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print("oh no, player has died")
+		bgm.play_game_over()
 		asteroid_timer.stop()
 		player.die()
 		#var player=get_node("Player")
@@ -59,6 +61,7 @@ func _on_player_hit():
 func _on_restart():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	print("restarting")
+	bgm.play_ingame()	
 	asteroid_timer.start()
 	player.revive()
 	globals.restart()

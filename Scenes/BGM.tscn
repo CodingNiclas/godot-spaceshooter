@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sounds/bgm_loops/Madness All Around Me.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/BGM.gd" type="Script" id=2]
+[ext_resource path="res://sounds/bgm_loops/The Circus Is Here.wav" type="AudioStream" id=3]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 position = Vector2( 500, 300 )
@@ -9,3 +10,11 @@ stream = ExtResource( 1 )
 volume_db = -6.0
 autoplay = true
 script = ExtResource( 2 )
+ingame_music = ExtResource( 1 )
+game_over_music = ExtResource( 3 )
+
+[node name="MusicFadeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="MusicFadeTimer" to="." method="_on_MusicFadeTimer_timeout"]
