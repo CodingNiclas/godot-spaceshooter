@@ -387,7 +387,7 @@ d = 0.01
 normal = Vector2( -3, 0 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 10, 300 )
+extents = Vector2( 10, 550 )
 
 [node name="Node2D_Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -450,7 +450,6 @@ zoom = Vector2( 2, 2 )
 
 [node name="Border" type="RigidBody2D" parent="."]
 position = Vector2( -192, 0 )
-collision_layer = 0
 collision_mask = 0
 mode = 1
 physics_material_override = SubResource( 6 )
@@ -466,15 +465,17 @@ shape = SubResource( 4 )
 disabled = true
 
 [node name="CollisionShape2" type="CollisionShape2D" parent="Border"]
-position = Vector2( 862, 300 )
+position = Vector2( 862, 505 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 5 )
+disabled = true
 one_way_collision_margin = 0.0
 
 [node name="CollisionShape3" type="CollisionShape2D" parent="Border"]
-position = Vector2( 160, 300 )
+position = Vector2( 160, 505 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 5 )
+disabled = true
 one_way_collision_margin = 0.0
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

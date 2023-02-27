@@ -2,9 +2,18 @@ extends CanvasLayer
 
 signal restart
 
+
+#sprites
+export(Texture) var pause_sprite
+export(Texture) var play_sprite
+
+#labels
 onready var health_label = get_node("HealthLabel")
 onready var score_label = get_node("ScoreLabel")
 onready var lvl_label = get_node("LvlLabel")
+#buttons
+onready var pause_button = get_node("PauseButton")
+
 
 onready var go_screen = get_node("GameOverScreen")
 onready var globals = get_node("/root/GlobalStats")
@@ -15,6 +24,8 @@ onready var globals = get_node("/root/GlobalStats")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pause_button.icon = pause_sprite
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	go_screen.visible = false
 	self.connect("restart",self.get_parent(),"_on_restart")
 	#health_label.text = "HP: 00"
@@ -36,4 +47,19 @@ func _on_RestartButton_pressed():
 	go_screen.visible = false
 	emit_signal("restart")
 	globals.set_game_over(false)
+	
+
+
+func _on_PauseButton_pressed():
+	#toggle pause:
+	print("toggle pause")
+	if globals.is_paused():
+		#pause_button.text = "| |"
+		pause_button.icon = pause_sprite
+		globals.unpause()
+	else:
+		#pause_button.text = ">"
+		pause_button.icon = play_sprite
+		globals.pause()
+	
 	

@@ -20,6 +20,7 @@ var music_volume = 0.8
 var asteroid_base_gravity = init_asteroid_base_gravity
 var asteroid_gravity_variation = 0.15
 var phase = 1
+var game_state = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,4 +87,13 @@ func calculate_asteroid_stats():
 		phase+=1
 		print("we are now in phase "+String(phase))
 	
+func is_paused():
+	return game_state == 1
 	
+func pause():
+	get_tree().paused = true
+	game_state = 1
+	
+func unpause():
+	get_tree().paused = false
+	game_state = 0

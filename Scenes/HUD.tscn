@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://ui/default_theme.tres" type="Theme" id=4]
 [ext_resource path="res://sprites/Preview2.png" type="Texture" id=5]
 [ext_resource path="res://shaders/canvas/sprite_outline.gdshader" type="Shader" id=6]
+[ext_resource path="res://sprites/ui/pause.png" type="Texture" id=7]
+[ext_resource path="res://sprites/ui/play.png" type="Texture" id=8]
+[ext_resource path="res://sprites/ui/play10x10.png" type="Texture" id=9]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -28,6 +31,8 @@ font_data = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
+pause_sprite = ExtResource( 7 )
+play_sprite = ExtResource( 9 )
 
 [node name="HealthLabel" type="Label" parent="."]
 material = SubResource( 1 )
@@ -86,4 +91,16 @@ margin_bottom = 107.0
 theme = ExtResource( 4 )
 text = "lvl: 1"
 
+[node name="PauseButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -25.0
+margin_top = 25.0
+margin_right = 25.0
+margin_bottom = 75.0
+theme = ExtResource( 4 )
+icon = ExtResource( 8 )
+expand_icon = true
+
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]

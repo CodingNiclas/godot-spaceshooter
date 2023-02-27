@@ -20,19 +20,25 @@ onready var shot_timer = get_node("ShotTimer")
 # var a = 2
 # var b = "text"
 
-var mouse_pos = position
+var follow_mouse = true
+var last_pos
+var mouse_pos
 var thresh = 10
 var hp
 var top_left = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	last_pos = position
+	mouse_pos = position
 	randomize()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if globals.is_game_over():
+		return
+	if !follow_mouse:
 		return
 	var vector = (mouse_pos - body.global_position)#.normalized()
 	if(vector.length()>thresh):
@@ -49,10 +55,45 @@ func _process(delta):
 func _input(event):
 	if globals.is_game_over():
 		return
-	if event is InputEventMouseMotion or event is InputEventScreenTouch:
-	   mouse_pos = event.position
-	if event.is_action_pressed("fire"):
-		spawn_projectile()
+	#if event is InputEventMouseMotion or event is InputEventScreenTouch:
+	#	mouse_pos = body.global_position + (event.position-last_pos)
+	#	last_pos = event.position
+	#if event is InputEventScreenTouch:
+	#	if event.pressed:
+	#		follow_mouse = true
+	#		last_pos = event.position
+		#elif event.released:
+		#	follow_mouse = false
+		#	last_pos = Vector2.ZERO
+	#if event.is_action_pressed("follow_mouse"):
+	#	follow_mouse = true
+	#	last_pos = get_viewport().get_mouse_position()
+	#elif event.is_action_released("follow_mouse"):
+	#	follow_mouse = false
+	#	last_pos = Vector2.ZERO
+	# ======
+	if !(event is InputEventScreenDrag)\
+		and !(event is InputEventScreenTouch)\
+		and !(event is InputEventMouse):
+			return
+
+	
+	#var is_drag = event is InputEventScreenDrag or event is InputEventMouseMotion
+	#var is_press = event.is_pressed()
+	#var is_release = !is_drag and !event.is_pressed()
+	
+	#if is_press:
+	#	last_pos = event.position
+	if event.is_pressed():
+		mouse_pos = body.global_position
+		last_pos = event.position
+	elif event is InputEventScreenDrag:
+		mouse_pos = body.global_position-(last_pos-event.position)
+		last_pos = event.position
+	
+	
+	#if event.is_action_pressed("fire"):
+	#	spawn_projectile()
 
 func spawn_projectile():
 	var shot = projectile_scene.instance()
@@ -67,12 +108,14 @@ func spawn_projectile():
 	proj_audio.play()
 
 func hit():
+	Input.vibrate_handheld()
 	ship_audio.stream = hit_sound
 	ship_audio.play()
 	ship_animator.play("player_ship_hit")
 	#player_audio
 
 func die():
+	Input.vibrate_handheld()	
 	shot_timer.stop()	
 	ship_audio.stream = die_sound
 	ship_audio.play()
