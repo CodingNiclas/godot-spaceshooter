@@ -5,6 +5,8 @@ onready var globals = get_node("/root/GlobalStats")
 onready var bgm = get_node("/root/Bgm")
 onready var asteroid_timer = get_node("AsteroidTimer")
 onready var player = get_node("Player")
+#onready var asteroid_container = get_node("AsteroidContainer")
+#var asteroid_storage
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -65,3 +67,5 @@ func _on_restart():
 	asteroid_timer.start()
 	player.revive()
 	globals.restart()
+	for asteroid in asteroid_container.get_children():
+		asteroid.free()

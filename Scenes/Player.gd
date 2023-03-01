@@ -20,6 +20,8 @@ onready var shot_timer = get_node("ShotTimer")
 # var a = 2
 # var b = "text"
 
+const drag_factor = 1
+
 var follow_mouse = true
 var last_pos
 var mouse_pos
@@ -88,7 +90,7 @@ func _input(event):
 		mouse_pos = body.global_position
 		last_pos = event.position
 	elif event is InputEventScreenDrag:
-		mouse_pos = body.global_position-(last_pos-event.position)
+		mouse_pos = body.global_position-(last_pos-event.position)*drag_factor
 		last_pos = event.position
 	
 	

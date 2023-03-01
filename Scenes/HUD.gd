@@ -40,6 +40,7 @@ func _process(delta):
 	if hp<=0:	
 		go_screen.visible = true
 		globals.set_game_over(true)
+		pause_button.visible = false #deactivate pause function when game over
 
 
 func _on_RestartButton_pressed():
@@ -47,6 +48,8 @@ func _on_RestartButton_pressed():
 	go_screen.visible = false
 	emit_signal("restart")
 	globals.set_game_over(false)
+	pause_button.visible = true #reactivate pause function when restarting
+	
 	
 
 

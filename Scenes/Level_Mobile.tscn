@@ -478,4 +478,6 @@ shape = SubResource( 5 )
 disabled = true
 one_way_collision_margin = 0.0
 
+[node name="AsteroidContainer" type="Node" parent="."]
+
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
