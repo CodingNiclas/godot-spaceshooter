@@ -61,6 +61,7 @@ func _newSplit(_dir):
 	#a1.global_position = self.global_position
 	splitted = true
 	a1_rb.linear_velocity = a1.gravity*collision_velocity.abs()*1.5
+	globals.spawned_asteroids.append(a1)
 	
 
 func _on_RigidBody2D_body_entered(_body):
@@ -89,11 +90,11 @@ func _on_RigidBody2D_body_entered(_body):
 		globals.remove(rb)
 		fx.emitting = true
 		destroyed = true
+		emit_signal("player_hit")		
 		var alive = globals.damage_player(1) #reduce player_health
 		#if !alive:
 		#	emit_signal("player_dead")
 		#	globals.set_game_over(true)
-		emit_signal("player_hit")
 
 
 

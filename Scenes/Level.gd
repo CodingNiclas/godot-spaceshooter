@@ -1,11 +1,12 @@
 extends Node2D
+
 var asteroid_scene = load("res://Scenes/Asteroid.tscn")
 var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
 onready var globals = get_node("/root/GlobalStats")
 onready var bgm = get_node("/root/Bgm")
 onready var asteroid_timer = get_node("AsteroidTimer")
 onready var player = get_node("Player")
-#onready var asteroid_container = get_node("AsteroidContainer")
+onready var last_player_hp = 99
 #var asteroid_storage
 # Declare member variables here. Examples:
 # var a = 2
@@ -43,14 +44,20 @@ func _on_AsteroidTimer_timeout():
 	#var velocity = Vector2(0.0, rand_range(150.0, 300.0))
 	#asterRB.linear_velocity = velocity #.rotated(direction)
 	add_child(asteroid)
+	globals.spawned_asteroids.append(asteroid)
 	asteroid.gravity = (target-asterRB.position).normalized() * globals.randomized_asteroid_gravity()
 	asteroid._initialize()	
 	globals.calculate_asteroid_stats()
 	#print(self.get_child_count()) #check if asteroids are auto-destroyed
 
 func _on_player_hit():
-	if globals.get_player_hp() > 0: #if player not dead
+	var player_hp = globals.get_player_hp()
+	if globals.is_player_immune():
+		return
+	
+	if  player_hp > 0: #and time-last_player_hit>player_immunity_time: #if player not dead
 		player.hit()
+		last_player_hp = player_hp
 	else:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print("oh no, player has died")
@@ -67,5 +74,4 @@ func _on_restart():
 	asteroid_timer.start()
 	player.revive()
 	globals.restart()
-	for asteroid in asteroid_container.get_children():
-		asteroid.free()
+	globals.remove_spawned_asteroids()

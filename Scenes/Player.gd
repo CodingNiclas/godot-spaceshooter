@@ -102,10 +102,10 @@ func spawn_projectile():
 	#get_node("KinematicBody2D").add_child(shot)
 	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
 	shot.global_position = proj_spawn_pos.global_position
-	print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
+	#print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
 	# play randomized sfx
 	var n = randi()%shot_sounds.size()
-	print("playing sfx "+String(n))
+	#print("playing sfx "+String(n))
 	proj_audio.stream = shot_sounds[n]
 	proj_audio.play()
 

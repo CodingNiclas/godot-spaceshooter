@@ -7,6 +7,7 @@ extends Node
 const max_player_hp = 5
 const init_asteroid_ratio = 0.2
 const init_asteroid_base_gravity = 0.25
+const player_immunity_time = 500
 #const init_asteroid_gravity_variation = 0.15
 
 
@@ -21,6 +22,18 @@ var asteroid_base_gravity = init_asteroid_base_gravity
 var asteroid_gravity_variation = 0.15
 var phase = 1
 var game_state = 0
+var last_player_damage_time = 0
+var spawned_asteroids = []
+var player_immune = false
+
+
+func _process(delta):
+	if player_immune:
+		var time = Time.get_ticks_msec()
+		#print("immu time: "+String(player_immunity_time))
+		#print(String(time)+"\\"+String(last_player_damage_time))
+		player_immune = (time-last_player_damage_time)<player_immunity_time
+		#print("player is immune: "+String(player_immune))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,8 +62,13 @@ func set_player_hp(_value):
 	player_hp = max(_value,0)
 	
 func damage_player(_damage):
-	set_player_hp(player_hp-_damage)
-	return player_hp>0
+	var time = Time.get_ticks_msec()
+	if !player_immune:
+		#print("time:"+String(time - last_player_damage_time))		
+		set_player_hp(player_hp-_damage)
+		last_player_damage_time = time
+		player_immune = true
+	#return player_hp>0
 	
 func remove(_obj):
 	for child in _obj.get_children():
@@ -97,3 +115,13 @@ func pause():
 func unpause():
 	get_tree().paused = false
 	game_state = 0
+	
+func remove_spawned_asteroids():
+	for asteroid in spawned_asteroids:
+		asteroid.queue_free()
+	spawned_asteroids = []
+	
+func is_player_immune():
+	print("the player is immune? "+String(player_immune))
+	print(String(last_player_damage_time))
+	return player_immune

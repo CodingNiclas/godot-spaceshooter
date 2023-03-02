@@ -55,11 +55,11 @@ func _on_RigidBody2D_body_entered(_body):
 		fx.emitting = true
 		#hit_audio.play()
 		destroyed = true
+		emit_signal("player_hit")		
 		var alive = globals.damage_player(1) #reduce player_health
 		#if !alive:
 		#	emit_signal("player_dead")
 		#	globals.set_game_over(true)
-		emit_signal("player_hit")
 
 
 
