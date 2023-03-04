@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample"
+type="AudioStreamWAV"
+uid="uid://c1h881eycuqba"
+path="res://.godot/imported/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/Pattlebaddle.wav"
-dest_files=[ "res://.import/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample" ]
+dest_files=["res://.godot/imported/Pattlebaddle.wav-91dc627f116dcf24c034ddd726344d8d.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/EnergyGun_Shoot1C.wav-e8f6e41d63a1c33b2408bd74960b74ec.sample"
+type="AudioStreamWAV"
+uid="uid://dpcuwxl6qfxng"
+path="res://.godot/imported/EnergyGun_Shoot1C.wav-e8f6e41d63a1c33b2408bd74960b74ec.sample"
 
 [deps]
 
 source_file="res://sounds/fx/shots/EnergyGun_Shoot1C.wav"
-dest_files=[ "res://.import/EnergyGun_Shoot1C.wav-e8f6e41d63a1c33b2408bd74960b74ec.sample" ]
+dest_files=["res://.godot/imported/EnergyGun_Shoot1C.wav-e8f6e41d63a1c33b2408bd74960b74ec.sample"]
 
 [params]
 

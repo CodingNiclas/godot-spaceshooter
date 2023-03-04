@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource path="res://sprites/Level/Background/BaseBlue640x640.png" type="Texture" id=1]
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/Planets.png" type="Texture" id=2]
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Level.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=6]
+[ext_resource type="Texture2D" uid="uid://cr48nhom3ef2k" path="res://sprites/Level/Background/BaseBlue640x640.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://clmqf1um6cqlt" path="res://sprites/Level/AsteroidsAndPlanets/Planets.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://yr0i80ok8x2k" path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" id="3"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://boyvk6h5wafst" path="res://Scenes/Player.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://d3iov2eadh0fc" path="res://Scenes/HUD.tscn" id="6"]
 
 [sub_resource type="TileSet" id=2]
 0/name = "Planets.png 0"
@@ -379,20 +379,20 @@
 friction = 0.0
 bounce = 2.27
 
-[sub_resource type="LineShape2D" id=3]
+[sub_resource type="WorldBoundaryShape2D" id=3]
 normal = Vector2( 3, 0 )
 d = 0.01
 
-[sub_resource type="LineShape2D" id=4]
+[sub_resource type="WorldBoundaryShape2D" id=4]
 normal = Vector2( -3, 0 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 10, 300 )
+size = Vector2( 10, 300 )
 
 [node name="Node2D_Level" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="BaseBlue640X640" type="Sprite" parent="."]
+[node name="BaseBlue640X640" type="Sprite2D" parent="."]
 position = Vector2( 512, 300 )
 texture = ExtResource( 1 )
 
@@ -410,26 +410,26 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TopLeft" type="Position2D" parent="BaseBlue640X640"]
+[node name="TopLeft" type="Marker2D" parent="BaseBlue640X640"]
 position = Vector2( -320, -320 )
 
-[node name="BottomRight" type="Position2D" parent="BaseBlue640X640"]
+[node name="BottomRight" type="Marker2D" parent="BaseBlue640X640"]
 position = Vector2( 320, 320 )
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[node name="AsteroidSpawnRight" type="Position2D" parent="AsteroidTimer"]
+[node name="AsteroidSpawnRight" type="Marker2D" parent="AsteroidTimer"]
 position = Vector2( 825, -100 )
 
-[node name="AsteroidSpawnLeft" type="Position2D" parent="AsteroidTimer"]
+[node name="AsteroidSpawnLeft" type="Marker2D" parent="AsteroidTimer"]
 position = Vector2( 200, -100 )
 
-[node name="AsteroidTargetRight" type="Position2D" parent="AsteroidTimer"]
+[node name="AsteroidTargetRight" type="Marker2D" parent="AsteroidTimer"]
 position = Vector2( 832, 666 )
 
-[node name="AsteroidTargetLeft" type="Position2D" parent="AsteroidTimer"]
+[node name="AsteroidTargetLeft" type="Marker2D" parent="AsteroidTimer"]
 position = Vector2( 194, 666 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
@@ -448,7 +448,7 @@ collision_mask = 0
 mode = 1
 physics_material_override = SubResource( 6 )
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Border"]
+[node name="CollisionShape3D" type="CollisionShape2D" parent="Border"]
 position = Vector2( 862, 300 )
 shape = SubResource( 3 )
 disabled = true
@@ -470,7 +470,7 @@ scale = Vector2( 2, 1 )
 shape = SubResource( 5 )
 one_way_collision_margin = 0.0
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2( 600, 1024 )
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

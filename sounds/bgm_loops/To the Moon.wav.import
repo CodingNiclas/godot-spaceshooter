@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample"
+type="AudioStreamWAV"
+uid="uid://d2e37atawa346"
+path="res://.godot/imported/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/To the Moon.wav"
-dest_files=[ "res://.import/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample" ]
+dest_files=["res://.godot/imported/To the Moon.wav-57e8902332f38e9d18207ec7768271e8.sample"]
 
 [params]
 

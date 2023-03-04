@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/In the Before Times.wav-ae4c7792e60f111d929dba7247c62f80.sample"
+type="AudioStreamWAV"
+uid="uid://dw3vphptbt3bs"
+path="res://.godot/imported/In the Before Times.wav-ae4c7792e60f111d929dba7247c62f80.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/In the Before Times.wav"
-dest_files=[ "res://.import/In the Before Times.wav-ae4c7792e60f111d929dba7247c62f80.sample" ]
+dest_files=["res://.godot/imported/In the Before Times.wav-ae4c7792e60f111d929dba7247c62f80.sample"]
 
 [params]
 

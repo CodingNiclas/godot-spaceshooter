@@ -1,481 +1,832 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=40 format=3 uid="uid://dpx07ufg3vqpp"]
 
-[ext_resource path="res://Scenes/Level.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Level/Background/BaseBlue640x640.png" type="Texture" id=2]
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" type="Texture" id=3]
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/Planets.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=6]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_ovanf"]
+[ext_resource type="Texture2D" uid="uid://cr48nhom3ef2k" path="res://sprites/Level/Background/BaseBlue640x640.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://yr0i80ok8x2k" path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://clmqf1um6cqlt" path="res://sprites/Level/AsteroidsAndPlanets/Planets.png" id="4"]
+[ext_resource type="PackedScene" uid="uid://dqu4ut7vf7sqy" path="res://Scenes/Player.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://jmosaycs5tef" path="res://sprites/ui/play10x10.png" id="5_32anf"]
+[ext_resource type="PackedScene" uid="uid://dk8oumh7o061w" path="res://Scenes/HUD.tscn" id="6"]
 
-[sub_resource type="TileSet" id=2]
-0/name = "Planets.png 0"
-0/texture = ExtResource( 4 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 16, 80, 48 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "Planets.png 1"
-1/texture = ExtResource( 4 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 88, 8, 64, 56 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "Planets.png 2"
-2/texture = ExtResource( 4 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 176, 16, 48, 48 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "Planets.png 3"
-3/texture = ExtResource( 4 )
-3/tex_offset = Vector2( 0, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 96, 80, 48 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-4/name = "Planets.png 4"
-4/texture = ExtResource( 4 )
-4/tex_offset = Vector2( 0, 0 )
-4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 88, 88, 64, 56 )
-4/tile_mode = 0
-4/occluder_offset = Vector2( 0, 0 )
-4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
-4/z_index = 0
-5/name = "Planets.png 5"
-5/texture = ExtResource( 4 )
-5/tex_offset = Vector2( 0, 0 )
-5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 176, 96, 48, 48 )
-5/tile_mode = 0
-5/occluder_offset = Vector2( 0, 0 )
-5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 0 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape_one_way = false
-5/shape_one_way_margin = 0.0
-5/shapes = [  ]
-5/z_index = 0
-6/name = "Planets.png 6"
-6/texture = ExtResource( 4 )
-6/tex_offset = Vector2( 0, 0 )
-6/modulate = Color( 1, 1, 1, 1 )
-6/region = Rect2( 0, 176, 80, 48 )
-6/tile_mode = 0
-6/occluder_offset = Vector2( 0, 0 )
-6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, 0 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-6/shape_one_way = false
-6/shape_one_way_margin = 0.0
-6/shapes = [  ]
-6/z_index = 0
-7/name = "Planets.png 7"
-7/texture = ExtResource( 4 )
-7/tex_offset = Vector2( 0, 0 )
-7/modulate = Color( 1, 1, 1, 1 )
-7/region = Rect2( 88, 168, 64, 56 )
-7/tile_mode = 0
-7/occluder_offset = Vector2( 0, 0 )
-7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, 0 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-7/shape_one_way = false
-7/shape_one_way_margin = 0.0
-7/shapes = [  ]
-7/z_index = 0
-8/name = "Planets.png 8"
-8/texture = ExtResource( 4 )
-8/tex_offset = Vector2( 0, 0 )
-8/modulate = Color( 1, 1, 1, 1 )
-8/region = Rect2( 176, 176, 48, 48 )
-8/tile_mode = 0
-8/occluder_offset = Vector2( 0, 0 )
-8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 0, 0 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape_one_way = false
-8/shape_one_way_margin = 0.0
-8/shapes = [  ]
-8/z_index = 0
-9/name = "Planets.png 9"
-9/texture = ExtResource( 4 )
-9/tex_offset = Vector2( 0, 0 )
-9/modulate = Color( 1, 1, 1, 1 )
-9/region = Rect2( 8, 248, 64, 64 )
-9/tile_mode = 0
-9/occluder_offset = Vector2( 0, 0 )
-9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( 0, 0 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-9/shape_one_way = false
-9/shape_one_way_margin = 0.0
-9/shapes = [  ]
-9/z_index = 0
-10/name = "Planets.png 10"
-10/texture = ExtResource( 4 )
-10/tex_offset = Vector2( 0, 0 )
-10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 96, 256, 48, 48 )
-10/tile_mode = 0
-10/occluder_offset = Vector2( 0, 0 )
-10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, 0 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape_one_way = false
-10/shape_one_way_margin = 0.0
-10/shapes = [  ]
-10/z_index = 0
-11/name = "Planets.png 11"
-11/texture = ExtResource( 4 )
-11/tex_offset = Vector2( 0, 0 )
-11/modulate = Color( 1, 1, 1, 1 )
-11/region = Rect2( 176, 256, 48, 48 )
-11/tile_mode = 0
-11/occluder_offset = Vector2( 0, 0 )
-11/navigation_offset = Vector2( 0, 0 )
-11/shape_offset = Vector2( 0, 0 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-11/shape_one_way = false
-11/shape_one_way_margin = 0.0
-11/shapes = [  ]
-11/z_index = 0
-12/name = "Planets.png 12"
-12/texture = ExtResource( 4 )
-12/tex_offset = Vector2( 0, 0 )
-12/modulate = Color( 1, 1, 1, 1 )
-12/region = Rect2( 16, 336, 48, 48 )
-12/tile_mode = 0
-12/occluder_offset = Vector2( 0, 0 )
-12/navigation_offset = Vector2( 0, 0 )
-12/shape_offset = Vector2( 0, 0 )
-12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-12/shape_one_way = false
-12/shape_one_way_margin = 0.0
-12/shapes = [  ]
-12/z_index = 0
-13/name = "Planets.png 13"
-13/texture = ExtResource( 4 )
-13/tex_offset = Vector2( 0, 0 )
-13/modulate = Color( 1, 1, 1, 1 )
-13/region = Rect2( 96, 336, 48, 48 )
-13/tile_mode = 0
-13/occluder_offset = Vector2( 0, 0 )
-13/navigation_offset = Vector2( 0, 0 )
-13/shape_offset = Vector2( 0, 0 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-13/shape_one_way = false
-13/shape_one_way_margin = 0.0
-13/shapes = [  ]
-13/z_index = 0
-14/name = "Planets.png 14"
-14/texture = ExtResource( 4 )
-14/tex_offset = Vector2( 0, 0 )
-14/modulate = Color( 1, 1, 1, 1 )
-14/region = Rect2( 176, 336, 48, 48 )
-14/tile_mode = 0
-14/occluder_offset = Vector2( 0, 0 )
-14/navigation_offset = Vector2( 0, 0 )
-14/shape_offset = Vector2( 0, 0 )
-14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-14/shape_one_way = false
-14/shape_one_way_margin = 0.0
-14/shapes = [  ]
-14/z_index = 0
-15/name = "Planets.png 15"
-15/texture = ExtResource( 4 )
-15/tex_offset = Vector2( 0, 0 )
-15/modulate = Color( 1, 1, 1, 1 )
-15/region = Rect2( 16, 416, 48, 48 )
-15/tile_mode = 0
-15/occluder_offset = Vector2( 0, 0 )
-15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, 0 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-15/shape_one_way = false
-15/shape_one_way_margin = 0.0
-15/shapes = [  ]
-15/z_index = 0
-16/name = "Planets.png 16"
-16/texture = ExtResource( 4 )
-16/tex_offset = Vector2( 0, 0 )
-16/modulate = Color( 1, 1, 1, 1 )
-16/region = Rect2( 96, 416, 48, 48 )
-16/tile_mode = 0
-16/occluder_offset = Vector2( 0, 0 )
-16/navigation_offset = Vector2( 0, 0 )
-16/shape_offset = Vector2( 0, 0 )
-16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-16/shape_one_way = false
-16/shape_one_way_margin = 0.0
-16/shapes = [  ]
-16/z_index = 0
-17/name = "Planets.png 17"
-17/texture = ExtResource( 4 )
-17/tex_offset = Vector2( 0, 0 )
-17/modulate = Color( 1, 1, 1, 1 )
-17/region = Rect2( 176, 416, 48, 48 )
-17/tile_mode = 0
-17/occluder_offset = Vector2( 0, 0 )
-17/navigation_offset = Vector2( 0, 0 )
-17/shape_offset = Vector2( 0, 0 )
-17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-17/shape_one_way = false
-17/shape_one_way_margin = 0.0
-17/shapes = [  ]
-17/z_index = 0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybrsy"]
+texture = ExtResource("4")
+margins = Vector2i(0, 16)
+texture_region_size = Vector2i(80, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
 
-[sub_resource type="TileSet" id=1]
-16/name = "Asteroids.png 16"
-16/texture = ExtResource( 3 )
-16/tex_offset = Vector2( 0, 0 )
-16/modulate = Color( 1, 1, 1, 1 )
-16/region = Rect2( 0, 0, 64, 64 )
-16/tile_mode = 0
-16/occluder_offset = Vector2( 0, 0 )
-16/navigation_offset = Vector2( 0, 0 )
-16/shape_offset = Vector2( 0, 0 )
-16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-16/shape_one_way = false
-16/shape_one_way_margin = 0.0
-16/shapes = [  ]
-16/z_index = 0
-17/name = "Asteroids.png 17"
-17/texture = ExtResource( 3 )
-17/tex_offset = Vector2( 0, 0 )
-17/modulate = Color( 1, 1, 1, 1 )
-17/region = Rect2( 64, 0, 64, 64 )
-17/tile_mode = 0
-17/occluder_offset = Vector2( 0, 0 )
-17/navigation_offset = Vector2( 0, 0 )
-17/shape_offset = Vector2( 0, 0 )
-17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-17/shape_one_way = false
-17/shape_one_way_margin = 0.0
-17/shapes = [  ]
-17/z_index = 0
-18/name = "Asteroids.png 18"
-18/texture = ExtResource( 3 )
-18/tex_offset = Vector2( 0, 0 )
-18/modulate = Color( 1, 1, 1, 1 )
-18/region = Rect2( 128, 0, 64, 64 )
-18/tile_mode = 0
-18/occluder_offset = Vector2( 0, 0 )
-18/navigation_offset = Vector2( 0, 0 )
-18/shape_offset = Vector2( 0, 0 )
-18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-18/shape_one_way = false
-18/shape_one_way_margin = 0.0
-18/shapes = [  ]
-18/z_index = 0
-19/name = "Asteroids.png 19"
-19/texture = ExtResource( 3 )
-19/tex_offset = Vector2( 0, 0 )
-19/modulate = Color( 1, 1, 1, 1 )
-19/region = Rect2( 192, 0, 64, 64 )
-19/tile_mode = 0
-19/occluder_offset = Vector2( 0, 0 )
-19/navigation_offset = Vector2( 0, 0 )
-19/shape_offset = Vector2( 0, 0 )
-19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-19/shape_one_way = false
-19/shape_one_way_margin = 0.0
-19/shapes = [  ]
-19/z_index = 0
-20/name = "Asteroids.png 20"
-20/texture = ExtResource( 3 )
-20/tex_offset = Vector2( 0, 0 )
-20/modulate = Color( 1, 1, 1, 1 )
-20/region = Rect2( 0, 64, 64, 64 )
-20/tile_mode = 0
-20/occluder_offset = Vector2( 0, 0 )
-20/navigation_offset = Vector2( 0, 0 )
-20/shape_offset = Vector2( 0, 0 )
-20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-20/shape_one_way = false
-20/shape_one_way_margin = 0.0
-20/shapes = [  ]
-20/z_index = 0
-21/name = "Asteroids.png 21"
-21/texture = ExtResource( 3 )
-21/tex_offset = Vector2( 0, 0 )
-21/modulate = Color( 1, 1, 1, 1 )
-21/region = Rect2( 64, 64, 64, 64 )
-21/tile_mode = 0
-21/occluder_offset = Vector2( 0, 0 )
-21/navigation_offset = Vector2( 0, 0 )
-21/shape_offset = Vector2( 0, 0 )
-21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-21/shape_one_way = false
-21/shape_one_way_margin = 0.0
-21/shapes = [  ]
-21/z_index = 0
-22/name = "Asteroids.png 22"
-22/texture = ExtResource( 3 )
-22/tex_offset = Vector2( 0, 0 )
-22/modulate = Color( 1, 1, 1, 1 )
-22/region = Rect2( 128, 64, 64, 64 )
-22/tile_mode = 0
-22/occluder_offset = Vector2( 0, 0 )
-22/navigation_offset = Vector2( 0, 0 )
-22/shape_offset = Vector2( 0, 0 )
-22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-22/shape_one_way = false
-22/shape_one_way_margin = 0.0
-22/shapes = [  ]
-22/z_index = 0
-23/name = "Asteroids.png 23"
-23/texture = ExtResource( 3 )
-23/tex_offset = Vector2( 0, 0 )
-23/modulate = Color( 1, 1, 1, 1 )
-23/region = Rect2( 192, 64, 64, 64 )
-23/tile_mode = 0
-23/occluder_offset = Vector2( 0, 0 )
-23/navigation_offset = Vector2( 0, 0 )
-23/shape_offset = Vector2( 0, 0 )
-23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-23/shape_one_way = false
-23/shape_one_way_margin = 0.0
-23/shapes = [  ]
-23/z_index = 0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr2qh"]
+texture = ExtResource("4")
+margins = Vector2i(88, 8)
+texture_region_size = Vector2i(64, 56)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
 
-[sub_resource type="PhysicsMaterial" id=6]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lw233"]
+texture = ExtResource("4")
+margins = Vector2i(96, 256)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7oge6"]
+texture = ExtResource("4")
+margins = Vector2i(176, 256)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv7g3"]
+texture = ExtResource("4")
+margins = Vector2i(16, 336)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jbcm"]
+texture = ExtResource("4")
+margins = Vector2i(96, 336)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvfmi"]
+texture = ExtResource("4")
+margins = Vector2i(176, 336)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b837t"]
+texture = ExtResource("4")
+margins = Vector2i(16, 416)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynxsw"]
+texture = ExtResource("4")
+margins = Vector2i(96, 416)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_121kn"]
+texture = ExtResource("4")
+margins = Vector2i(176, 416)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2du6c"]
+texture = ExtResource("4")
+margins = Vector2i(176, 16)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fpsg3"]
+texture = ExtResource("4")
+margins = Vector2i(0, 96)
+texture_region_size = Vector2i(80, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_28j38"]
+texture = ExtResource("4")
+margins = Vector2i(88, 88)
+texture_region_size = Vector2i(64, 56)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ai8x"]
+texture = ExtResource("4")
+margins = Vector2i(176, 96)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vgaq8"]
+texture = ExtResource("4")
+margins = Vector2i(0, 176)
+texture_region_size = Vector2i(80, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7o82"]
+texture = ExtResource("4")
+margins = Vector2i(88, 168)
+texture_region_size = Vector2i(64, 56)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f0tc0"]
+texture = ExtResource("4")
+margins = Vector2i(176, 176)
+texture_region_size = Vector2i(48, 48)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uduu4"]
+texture = ExtResource("4")
+margins = Vector2i(8, 248)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSet" id="2"]
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_ybrsy")
+sources/1 = SubResource("TileSetAtlasSource_cr2qh")
+sources/2 = SubResource("TileSetAtlasSource_2du6c")
+sources/3 = SubResource("TileSetAtlasSource_fpsg3")
+sources/4 = SubResource("TileSetAtlasSource_28j38")
+sources/5 = SubResource("TileSetAtlasSource_2ai8x")
+sources/6 = SubResource("TileSetAtlasSource_vgaq8")
+sources/7 = SubResource("TileSetAtlasSource_x7o82")
+sources/8 = SubResource("TileSetAtlasSource_f0tc0")
+sources/9 = SubResource("TileSetAtlasSource_uduu4")
+sources/10 = SubResource("TileSetAtlasSource_lw233")
+sources/11 = SubResource("TileSetAtlasSource_7oge6")
+sources/12 = SubResource("TileSetAtlasSource_wv7g3")
+sources/13 = SubResource("TileSetAtlasSource_1jbcm")
+sources/14 = SubResource("TileSetAtlasSource_wvfmi")
+sources/15 = SubResource("TileSetAtlasSource_b837t")
+sources/16 = SubResource("TileSetAtlasSource_ynxsw")
+sources/17 = SubResource("TileSetAtlasSource_121kn")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdixs"]
+texture = ExtResource("3")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kiswe"]
+texture = ExtResource("3")
+margins = Vector2i(64, 0)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it1hx"]
+texture = ExtResource("3")
+margins = Vector2i(128, 0)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogfh5"]
+texture = ExtResource("3")
+margins = Vector2i(192, 0)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3ryu"]
+texture = ExtResource("3")
+margins = Vector2i(0, 64)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ihqo2"]
+texture = ExtResource("3")
+margins = Vector2i(64, 64)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h154f"]
+texture = ExtResource("3")
+margins = Vector2i(128, 64)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awj8x"]
+texture = ExtResource("3")
+margins = Vector2i(192, 64)
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSet" id="1"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_kdixs")
+sources/1 = SubResource("TileSetAtlasSource_kiswe")
+sources/2 = SubResource("TileSetAtlasSource_it1hx")
+sources/3 = SubResource("TileSetAtlasSource_ogfh5")
+sources/4 = SubResource("TileSetAtlasSource_n3ryu")
+sources/5 = SubResource("TileSetAtlasSource_ihqo2")
+sources/6 = SubResource("TileSetAtlasSource_h154f")
+sources/7 = SubResource("TileSetAtlasSource_awj8x")
+
+[sub_resource type="PhysicsMaterial" id="6"]
 friction = 0.0
 bounce = 2.27
 
-[sub_resource type="LineShape2D" id=3]
-normal = Vector2( 3, 0 )
-d = 0.01
+[sub_resource type="WorldBoundaryShape2D" id="3"]
+normal = Vector2(3, 0)
 
-[sub_resource type="LineShape2D" id=4]
-normal = Vector2( -3, 0 )
+[sub_resource type="WorldBoundaryShape2D" id="4"]
+normal = Vector2(-3, 0)
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 10, 550 )
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(10, 550)
 
 [node name="Node2D_Level" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1_ovanf")
 
-[node name="BaseBlue640X640" type="Sprite" parent="."]
-position = Vector2( 480, 792 )
-texture = ExtResource( 2 )
-offset = Vector2( -160, -492 )
+[node name="BaseBlue640X640" type="Sprite2D" parent="."]
+position = Vector2(480, 792)
+texture = ExtResource("2")
+offset = Vector2(-160, -492)
 
 [node name="TileMap_Planets" type="TileMap" parent="BaseBlue640X640"]
-tile_set = SubResource( 2 )
-cell_size = Vector2( 32, 32 )
-centered_textures = true
-format = 1
+tile_set = SubResource("2")
+format = 2
 
 [node name="TileMap_Astereoids" type="TileMap" parent="BaseBlue640X640"]
-position = Vector2( -512, -300 )
-tile_set = SubResource( 1 )
-format = 1
+position = Vector2(-512, -300)
+tile_set = SubResource("1")
+format = 2
 
-[node name="TopLeft" type="Position2D" parent="BaseBlue640X640"]
-position = Vector2( -480, -792 )
+[node name="TopLeft" type="Marker2D" parent="BaseBlue640X640"]
+position = Vector2(-480, -792)
 
-[node name="BottomRight" type="Position2D" parent="BaseBlue640X640"]
-position = Vector2( 320, 320 )
+[node name="BottomRight" type="Marker2D" parent="BaseBlue640X640"]
+visible = false
+position = Vector2(120, 232)
 
-[node name="BaseBlue640X640" type="Sprite" parent="BaseBlue640X640"]
-position = Vector2( 0, 640 )
-texture = ExtResource( 2 )
-offset = Vector2( -160, -492 )
-
-[node name="Position2D" type="Position2D" parent="BaseBlue640X640"]
-position = Vector2( 120, 232 )
+[node name="BaseBlue640X640" type="Sprite2D" parent="BaseBlue640X640"]
+position = Vector2(0, 640)
+texture = ExtResource("2")
+offset = Vector2(-160, -492)
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[node name="AsteroidSpawnRight" type="Position2D" parent="AsteroidTimer"]
-position = Vector2( 605, -86 )
+[node name="AsteroidSpawnRight" type="Marker2D" parent="AsteroidTimer"]
+position = Vector2(605, -86)
 
-[node name="AsteroidSpawnLeft" type="Position2D" parent="AsteroidTimer"]
-position = Vector2( 32, -88 )
-
-[node name="AsteroidTargetRight" type="Position2D" parent="AsteroidTimer"]
-position = Vector2( 616, 674 )
-
-[node name="AsteroidTargetLeft" type="Position2D" parent="AsteroidTimer"]
-position = Vector2( 34, 674 )
-
-[node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 320, 550 )
-
-[node name="Control" parent="." instance=ExtResource( 6 )]
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Play10x10" type="Sprite2D" parent="AsteroidTimer/AsteroidSpawnRight"]
 visible = false
-position = Vector2( 512, 300 )
-zoom = Vector2( 2, 2 )
+texture = ExtResource("5_32anf")
+
+[node name="AsteroidSpawnLeft" type="Marker2D" parent="AsteroidTimer"]
+position = Vector2(32, -88)
+
+[node name="Play10x10" type="Sprite2D" parent="AsteroidTimer/AsteroidSpawnLeft"]
+visible = false
+texture = ExtResource("5_32anf")
+
+[node name="AsteroidTargetRight" type="Marker2D" parent="AsteroidTimer"]
+position = Vector2(612, 1023)
+
+[node name="Play10x10" type="Sprite2D" parent="AsteroidTimer/AsteroidTargetRight"]
+visible = false
+texture = ExtResource("5_32anf")
+
+[node name="AsteroidTargetLeft" type="Marker2D" parent="AsteroidTimer"]
+position = Vector2(30, 1023)
+
+[node name="Play10x10" type="Sprite2D" parent="AsteroidTimer/AsteroidTargetLeft"]
+visible = false
+texture = ExtResource("5_32anf")
+
+[node name="Player" parent="." instance=ExtResource("5")]
+position = Vector2(320, 550)
+
+[node name="Control" parent="." instance=ExtResource("6")]
 
 [node name="Border" type="RigidBody2D" parent="."]
-position = Vector2( -192, 0 )
+position = Vector2(-192, 0)
 collision_mask = 0
-mode = 1
-physics_material_override = SubResource( 6 )
+physics_material_override = SubResource("6")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Border"]
-position = Vector2( 862, 300 )
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape2D" parent="Border"]
+position = Vector2(862, 300)
+shape = SubResource("3")
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
-position = Vector2( 162, 300 )
-shape = SubResource( 4 )
+position = Vector2(162, 300)
+shape = SubResource("4")
 disabled = true
 
 [node name="CollisionShape2" type="CollisionShape2D" parent="Border"]
-position = Vector2( 862, 505 )
-scale = Vector2( 2, 1 )
-shape = SubResource( 5 )
+position = Vector2(862, 505)
+scale = Vector2(2, 1)
+shape = SubResource("5")
 disabled = true
 one_way_collision_margin = 0.0
 
 [node name="CollisionShape3" type="CollisionShape2D" parent="Border"]
-position = Vector2( 160, 505 )
-scale = Vector2( 2, 1 )
-shape = SubResource( 5 )
+position = Vector2(160, 505)
+scale = Vector2(2, 1)
+shape = SubResource("5")
 disabled = true
 one_way_collision_margin = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(343, 212)
+enabled = false
+zoom = Vector2(0.621, 0.621)
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

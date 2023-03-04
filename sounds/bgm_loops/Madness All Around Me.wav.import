@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Madness All Around Me.wav-5fa5faa8969501765c931f3911a7098c.sample"
+type="AudioStreamWAV"
+uid="uid://ciau2728dl608"
+path="res://.godot/imported/Madness All Around Me.wav-5fa5faa8969501765c931f3911a7098c.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/Madness All Around Me.wav"
-dest_files=[ "res://.import/Madness All Around Me.wav-5fa5faa8969501765c931f3911a7098c.sample" ]
+dest_files=["res://.godot/imported/Madness All Around Me.wav-5fa5faa8969501765c931f3911a7098c.sample"]
 
 [params]
 

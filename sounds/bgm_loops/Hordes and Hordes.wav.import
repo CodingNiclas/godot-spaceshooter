@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Hordes and Hordes.wav-dac6e9c030fc5ea3ee47920750efb53e.sample"
+type="AudioStreamWAV"
+uid="uid://dx2ffikkyxue6"
+path="res://.godot/imported/Hordes and Hordes.wav-dac6e9c030fc5ea3ee47920750efb53e.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/Hordes and Hordes.wav"
-dest_files=[ "res://.import/Hordes and Hordes.wav-dac6e9c030fc5ea3ee47920750efb53e.sample" ]
+dest_files=["res://.godot/imported/Hordes and Hordes.wav-dac6e9c030fc5ea3ee47920750efb53e.sample"]
 
 [params]
 

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Pleasant Adventure.wav-5f8dc4054b970856ed7b03ad6c5917ce.sample"
+type="AudioStreamWAV"
+uid="uid://c75omqo0bucwj"
+path="res://.godot/imported/Pleasant Adventure.wav-5f8dc4054b970856ed7b03ad6c5917ce.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/Pleasant Adventure.wav"
-dest_files=[ "res://.import/Pleasant Adventure.wav-5f8dc4054b970856ed7b03ad6c5917ce.sample" ]
+dest_files=["res://.godot/imported/Pleasant Adventure.wav-5f8dc4054b970856ed7b03ad6c5917ce.sample"]
 
 [params]
 

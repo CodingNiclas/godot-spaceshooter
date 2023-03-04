@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample"
+type="AudioStreamWAV"
+uid="uid://pnssgoqnxid8"
+path="res://.godot/imported/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample"
 
 [deps]
 
 source_file="res://sounds/bgm_loops/The Circus Is Here.wav"
-dest_files=[ "res://.import/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample" ]
+dest_files=["res://.godot/imported/The Circus Is Here.wav-44c1f272b3404862cdd24dffa5b36b22.sample"]
 
 [params]
 

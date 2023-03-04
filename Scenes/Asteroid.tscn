@@ -1,106 +1,42 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://c2f3cohs4curo"]
 
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" type="Texture" id=1]
-[ext_resource path="res://sprites/Level/AsteroidsAndPlanets/asteroid_b4.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Asteroid.gd" type="Script" id=3]
-[ext_resource path="res://sounds/fx/hits/hit_003.wav" type="AudioStream" id=4]
-[ext_resource path="res://physics/asteroid_material.tres" type="PhysicsMaterial" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 21 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 1.0
-flag_disable_z = true
-direction = Vector3( 1, 1, 1 )
-spread = 180.0
-flatness = 1.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 50.0
-initial_velocity_random = 0.5
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 30.0
-scale = 0.5
+[ext_resource type="Texture2D" uid="uid://yr0i80ok8x2k" path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/Asteroid.gd" id="1_yjsp3"]
+[ext_resource type="Texture2D" uid="uid://dtrmuugfu1rke" path="res://sprites/Level/AsteroidsAndPlanets/asteroid_b4.png" id="2"]
+[ext_resource type="Script" path="res://Scripts/AsteroidArea.gd" id="2_fbhio"]
+[ext_resource type="AudioStream" uid="uid://b7ujbalks37lp" path="res://sounds/fx/hits/hit_003.wav" id="4"]
+[ext_resource type="Material" uid="uid://bpicqlbrjta04" path="res://materials/particles/asteroid_particles.tres" id="4_gmqxy"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("1_yjsp3")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["asteroid"]]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
-collision_mask = 5
-mass = 2.0
-physics_material_override = ExtResource( 5 )
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-can_sleep = false
+script = ExtResource("2_fbhio")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-1, 21, 5, 21, 19, 11, 20, -3, 3, -19, -11, -21, -20, -11, -20, -5, -17, 10)
 
-[node name="Asteroid0" type="Sprite" parent="RigidBody2D"]
-visible = false
-position = Vector2( 0, 1 )
-texture = ExtResource( 1 )
+[node name="Asteroid4" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
+texture = ExtResource("1")
 region_enabled = true
-region_rect = Rect2( 13, 10, 40, 42 )
+region_rect = Rect2(13, 74, 40, 42)
 
-[node name="Asteroid1" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 84, 20, 29, 26 )
-
-[node name="Asteroid2" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 151, 13, 21, 35 )
-
-[node name="Asteroid3" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 217, 23, 18, 17 )
-
-[node name="Asteroid4" type="Sprite" parent="RigidBody2D"]
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 13, 74, 40, 42 )
-
-[node name="Asteroid5" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 84, 84, 29, 26 )
-
-[node name="Asteroid6" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 151, 77, 21, 35 )
-
-[node name="Asteroid7" type="Sprite" parent="RigidBody2D"]
-visible = false
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 217, 87, 18, 17 )
-
-[node name="ExplosionParticles" type="Particles2D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+texture_filter = 1
 emitting = false
 amount = 16
+process_material = ExtResource("4_gmqxy")
+texture = ExtResource("2")
 lifetime = 2.0
 one_shot = true
-preprocess = 1.0
+preprocess = 0.3
 explosiveness = 1.0
-process_material = SubResource( 2 )
-texture = ExtResource( 2 )
 
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 volume_db = -6.0
 
-[connection signal="body_entered" from="RigidBody2D" to="." method="_on_RigidBody2D_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

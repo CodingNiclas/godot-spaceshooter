@@ -1,0 +1,18 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://ceiglptb756bq"]
+
+[ext_resource type="Texture2D" uid="uid://cnbigb24tjb4j" path="res://materials/particles/explosion_particles_dissappear_curve.tres" id="1_ny4hp"]
+
+[resource]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 55.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = ExtResource("1_ny4hp")

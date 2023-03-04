@@ -1,0 +1,15 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://devbn152nklr4"]
+
+[ext_resource type="Texture2D" uid="uid://cnbigb24tjb4j" path="res://materials/particles/explosion_particles_dissappear_curve.tres" id="1_rbgdi"]
+
+[resource]
+lifetime_randomness = 0.1
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 52.5
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = ExtResource("1_rbgdi")
