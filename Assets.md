@@ -1,4 +1,4 @@
 - BGM: [Fuse - Retro Fusion Music](https://beepartz.itch.io/fuse-retro-fusion-music-loops)
-- Backgrounds,Meteroids & co.: [Sci-Fi Space](https://aamatniekss.itch.io/sci-fi-space-background-set)
+- Backgrounds,Asteroids & co.: [Sci-Fi Space](https://aamatniekss.itch.io/sci-fi-space-background-set)
 - spaceship: [Space Shooter Game Pack](https://artstore.itch.io/space-shooter-game-pack)
 - SoundFX (shoot,hit,...): [8-bit-game-sound-effects](https://harvey656.itch.io/8-bit-game-sound-effects-collection)

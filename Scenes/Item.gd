@@ -41,6 +41,7 @@ func _on_body_entered(body):
 func destroy():
 	if destroyed:
 		return
+	get_node("AudioStreamPlayer2D").playing = true
 	destroyed = true
 	#print("item picked?")
 	#globals.remove(self)
