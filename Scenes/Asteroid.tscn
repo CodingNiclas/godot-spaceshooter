@@ -12,6 +12,7 @@ script = ExtResource("1_yjsp3")
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("2_fbhio")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -26,12 +27,11 @@ region_rect = Rect2(13, 74, 40, 42)
 [node name="ExplosionParticles" type="GPUParticles2D" parent="."]
 texture_filter = 1
 emitting = false
-amount = 16
+amount = 12
 process_material = ExtResource("4_gmqxy")
 texture = ExtResource("2")
 lifetime = 2.0
 one_shot = true
-preprocess = 0.3
 explosiveness = 1.0
 
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="."]

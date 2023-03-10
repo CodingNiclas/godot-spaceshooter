@@ -1,4 +1,5 @@
-res://Scenes
-/media/data-disk/Data/Coding/GameDev/Godot/godotspaceshooter/builds/android/2023-03-04
 /home/niclas/Android/Sdk
+res://animations/libaries
+res://animations
+res://Scenes
 res://materials/particles

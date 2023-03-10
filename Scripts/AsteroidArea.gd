@@ -33,3 +33,5 @@ func apply_gravity(delta):
 func prewarm(seconds:float):
 	velocity+=force*seconds
 
+func get_velocity_vector():
+	return direction*velocity

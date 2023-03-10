@@ -8,6 +8,7 @@ const max_player_hp = 5
 const init_asteroid_ratio = 0.2
 const init_asteroid_base_gravity = 0.25
 const player_immunity_time = 500
+const health_drop_rate = 0.01
 #const init_asteroid_gravity_variation = 0.15
 
 
@@ -25,7 +26,6 @@ var game_state = 0
 var last_player_damage_time = 0
 var spawned_asteroids = []
 var player_immune = false
-
 
 func _process(_delta):
 	if player_immune:
@@ -128,3 +128,7 @@ func is_player_immune():
 	print("the player is "+ "immune" if player_immune else "not immune")
 	print(last_player_damage_time)
 	return player_immune
+
+func heal_player(hp):
+	if player_hp<max_player_hp:
+		player_hp+=hp

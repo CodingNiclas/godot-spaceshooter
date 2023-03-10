@@ -5,12 +5,15 @@ signal player_hit
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+@onready var globals = get_node("/root/GlobalStats")
+@onready var spawner = get_node("/root/Spawner")
+
 @onready var bdy:Area2D = get_node("Area2D")
 @onready var fx = get_node("ExplosionParticles")
 @onready var hit_audio = get_node("HitAudio")
 @onready var sprite = get_node("Area2D/Asteroid4")
-@onready var globals = get_node("/root/GlobalStats")
 @onready var max_y = globals.bottom_right.y
+
 
 var destroyed = false
 var rotation_direction = randf_range(-1, 1)
@@ -47,7 +50,7 @@ func _on_area_body_entered(cbody):
 		enemy_collide()
 		#get_parent().collision(CollisionType.Enemy)
 	elif(cbody.is_in_group("projectile")):
-		projectile_collide()
+		projectile_collide(cbody)
 		#get_parent().collision(CollisionType.Projectile)
 	elif(cbody.is_in_group("player")):
 		player_collide()
@@ -59,7 +62,7 @@ func _on_area_area_entered(carea):
 		#get_parent().collision(CollisionType.Enemy)
 	elif(carea.is_in_group("projectile")):
 		#globals.remove(carea)
-		projectile_collide()
+		projectile_collide(carea)
 		#get_parent().collision(CollisionType.Projectile)
 	elif(carea.is_in_group("player")):
 		player_collide()
@@ -67,18 +70,27 @@ func _on_area_area_entered(carea):
 
 func enemy_collide():
 	pass
-func projectile_collide():
-	fx.position = bdy.position
-	fx.emitting = true
-	deactivate_body()
-	hit_audio.play()		
+func projectile_collide(projectile):
+	if destroyed:
+		return
+	var par = projectile.get_parent()
+	if par.hp<=0:
+		#print(par.hp,": double collision => exit")	
+		return
+	#print("projectile hit, destroyed: ",destroyed)
+	projectile.get_parent().hit(1)#hp -= 1
+	
+	play_hit_effects()
+	deactivate_body()		
 	destroyed = true
 	globals.score = globals.score + destruction_points
+	if randf_range(0,1)<globals.health_drop_rate:
+		spawner.spawn_item(bdy.global_position)
+	
 func player_collide():
-	fx.position = bdy.position
-	fx.emitting = true
+	play_hit_effects()
 	deactivate_body()	
-	hit_audio.play()
+	
 	destroyed = true
 	globals.damage_player(1) #reduce player_health
 	emit_signal("player_hit")
@@ -91,3 +103,11 @@ func deactivate_body():
 	bdy.set_collision_mask_value(1,false)
 	bdy.visible = false
 
+func play_hit_effects():
+	var velocity:Vector3 = Vector3(0,0,0)*bdy.velocity#Vector3(bdy.get_velocity_vector().x , bdy.get_velocity_vector().y , 0)
+	#audio:
+	hit_audio.play()
+	#particles:
+	fx.position = bdy.position
+	fx.emitting = true
+	fx.process_material.set("gravity",velocity)

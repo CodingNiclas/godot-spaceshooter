@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 GlobalStats="*res://Scripts/GlobalStats.gd"
 Bgm="*res://Scenes/BGM.tscn"
+Spawner="*res://Scripts/Spawner.gd"
 
 [display]
 

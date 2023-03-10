@@ -29,7 +29,6 @@ func _ready():
 func _on_AsteroidTimer_timeout():
 	var c1 = randf_range(0,1)>globals.asteroid_ratio	
 	var asteroid = asteroid_scene.instantiate() if c1 else big_asteroid_scene.instantiate()
-	print(asteroid)
 	#var sprite = asteroid.get_children()[0]
 	#var direction = Vector2(0,-1)
 	#asteroid.linear_velocity = direction

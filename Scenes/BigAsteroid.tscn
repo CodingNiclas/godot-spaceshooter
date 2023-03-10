@@ -10,5 +10,8 @@ script = ExtResource("2_nnk5p")
 [node name="Area2D" parent="." index="0"]
 scale = Vector2(1.75, 1.75)
 
+[node name="ExplosionParticles" parent="." index="1"]
+amount = 20
+
 [node name="HitAudio" parent="." index="2"]
 stream = ExtResource("3_m8b64")

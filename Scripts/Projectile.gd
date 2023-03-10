@@ -26,13 +26,20 @@ func _process(_delta):
 	if rb.global_position.y < 0:
 		globals.remove(self)
 
+func hit(dmg):
+	hp-=dmg
+	if hp<=0:
+		globals.remove(self)
+	else:
+		print(hp)
 
 func _on_area_2d_body_entered(body):
 	pass#print("area hit")
 
 
 func _on_area_area_entered(area):
-	if area.is_in_group("enemy"):
-		hp-=1
-		if hp<=0:
-			globals.remove(self)
+	pass
+	#if area.is_in_group("enemy"):
+	#	hp-=1
+	#	if hp<=0:
+	#		globals.remove(self)
