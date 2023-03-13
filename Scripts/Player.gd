@@ -52,50 +52,41 @@ func _process(delta):
 	var br = globals.get_bottom_right()
 	body.global_position.x = clamp(pos.x,tl.x,br.x)
 	body.global_position.y = clamp(pos.y,tl.y,br.y)
+	check_kb_input()
 
+
+func check_kb_input():
+	var dir:Vector2 = Vector2.ZERO
+	
+	if Input.is_action_pressed("down"):
+		dir+=Vector2(0,-1)
+	if Input.is_action_pressed("up"):
+		dir+=Vector2(0,1)
+	if Input.is_action_pressed("left"):
+		dir+=Vector2(1,0)
+	if Input.is_action_pressed("right"):
+		dir+=Vector2(-1,0)
+
+	mouse_pos = body.global_position - dir.normalized()*10
 
 func _input(event):
 	if globals.is_game_over():
 		return
-	#if event is InputEventMouseMotion or event is InputEventScreenTouch:
-	#	mouse_pos = body.global_position + (event.position-last_pos)
+	
+	#if Input.is_action_just_pressed("down"):
+	#	mouse_pos = body.global_position
 	#	last_pos = event.position
-	#if event is InputEventScreenTouch:
-	#	if event.pressed:
-	#		follow_mouse = true
-	#		last_pos = event.position
-		#elif event.released:
-		#	follow_mouse = false
-		#	last_pos = Vector2.ZERO
-	#if event.is_action_pressed("follow_mouse"):
-	#	follow_mouse = true
-	#	last_pos = get_viewport().get_mouse_position()
-	#elif event.is_action_released("follow_mouse"):
-	#	follow_mouse = false
-	#	last_pos = Vector2.ZERO
-	# ======
+
 	if !(event is InputEventScreenDrag)\
 		and !(event is InputEventScreenTouch)\
 		and !(event is InputEventMouse):
 			return
-
-	
-	#var is_drag = event is InputEventScreenDrag or event is InputEventMouseMotion
-	#var is_press = event.is_pressed()
-	#var is_release = !is_drag and !event.is_pressed()
-	
-	#if is_press:
-	#	last_pos = event.position
 	if event.is_pressed():
 		mouse_pos = body.global_position
 		last_pos = event.position
 	elif event is InputEventScreenDrag:
 		mouse_pos = body.global_position-(last_pos-event.position)*drag_factor
 		last_pos = event.position
-	
-	
-	#if event.is_action_pressed("fire"):
-	#	spawn_projectile()
 
 func _on_shot_timer_timeout():
 	var shot = projectile_scene.instantiate()

@@ -5,6 +5,7 @@ var asteroid_scene = load("res://Scenes/Asteroid.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	destruction_points = 15 #override default destruction points
 	pass # Replace with function body.
 
 

@@ -8,7 +8,7 @@ const max_player_hp = 5
 const init_asteroid_ratio = 0.2
 const init_asteroid_base_gravity = 0.25
 const player_immunity_time = 500
-const health_drop_rate = 0.01
+const health_drop_rate = 0.02
 #const init_asteroid_gravity_variation = 0.15
 
 
