@@ -9,7 +9,5 @@ res://Scenes/Projectile.tscn
 res://Scenes/Level.tscn
 res://Scenes/Item.tscn
 res://Scenes/Spawner.tscn
-res://Scripts/GlobalStats.gd
-res://Scenes/Item.gd
-res://Scripts/BigAsteroid.gd
-res://Scripts/Player.gd
+res://Scripts/Spawner.gd
+res://Scripts/Asteroid.gd

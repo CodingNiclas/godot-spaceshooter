@@ -78,14 +78,15 @@ func projectile_collide(projectile):
 		#print(par.hp,": double collision => exit")	
 		return
 	#print("projectile hit, destroyed: ",destroyed)
-	projectile.get_parent().hit(1)#hp -= 1
-	
+	projectile.get_parent().hit(1)#hp -= 1	
 	play_hit_effects()
 	deactivate_body()		
 	destroyed = true
 	globals.score = globals.score + destruction_points
-	if randf_range(0,1)<globals.health_drop_rate:
-		spawner.spawn_item(bdy.global_position)
+	#if randf_range(0,1)<globals.health_drop_rate:
+	#	spawner.spawn_item(bdy.global_position)
+	spawner.register_enemy_dest(bdy.global_position)
+	
 	
 func player_collide():
 	play_hit_effects()
