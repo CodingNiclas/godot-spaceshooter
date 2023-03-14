@@ -25,7 +25,7 @@ func spawn_item(position):
 
 func register_enemy_dest(pos):
 	dest_until_drop-=1
-	print(dest_until_drop," destructions left")
+	#print(dest_until_drop," destructions left")
 	if dest_until_drop==0:
 		spawn_item(pos)
 		dest_until_drop = randi_range(idr-dv,idr+dv)

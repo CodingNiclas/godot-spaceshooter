@@ -120,8 +120,8 @@ func remove_spawned_asteroids():
 	for asteroid in spawned_asteroids:
 		if asteroid != null:
 			asteroid.queue_free()
-		else: 
-			print("null-asteroid")
+		#else: 
+		#	print("null-asteroid")
 	spawned_asteroids = Array()
 	
 func is_player_immune():

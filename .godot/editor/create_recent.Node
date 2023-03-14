@@ -1,3 +1,5 @@
+Timer
+Label
 AudioStreamPlayer2D
 AnimationPlayer
 AnimationTree
@@ -12,4 +14,3 @@ Camera2D
 RigidBody2D
 CharacterBody2D
 TextureRect
-Timer

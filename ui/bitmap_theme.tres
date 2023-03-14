@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cj8wdj52s0x7v"]
+
+[ext_resource type="FontFile" uid="uid://c6qfnov2a4jnk" path="res://fonts/CONCHARS.png" id="1_jhygp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnrlk"]
+bg_color = Color(1, 0, 0.392157, 0.588235)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j30h"]
+bg_color = Color(1, 0, 0.392157, 0.588235)
+skew = Vector2(-0.1, 0)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6pah"]
+bg_color = Color(1, 0, 0.392157, 0.588235)
+skew = Vector2(0.1, 0)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inhcy"]
+bg_color = Color(1, 0, 0.0509804, 0.784314)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_jhygp")
+Button/styles/focus = SubResource("StyleBoxFlat_gnrlk")
+Button/styles/hover = SubResource("StyleBoxFlat_1j30h")
+Button/styles/normal = SubResource("StyleBoxFlat_o6pah")
+Button/styles/pressed = SubResource("StyleBoxFlat_inhcy")

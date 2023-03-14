@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=12 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
+[ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
 [ext_resource type="Theme" uid="uid://cnblchsm4ed1e" path="res://ui/default_theme.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://cxp3hgchbufui" path="res://sprites/Preview2.png" id="5"]
+[ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="5_6vorb"]
 [ext_resource type="Shader" path="res://shaders/canvas/sprite_outline.gdshader" id="6"]
-[ext_resource type="Texture2D" uid="uid://b6jcs4jajnr2o" path="res://sprites/ui/pause.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://cw151o7e617j0" path="res://sprites/ui/play.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://jmosaycs5tef" path="res://sprites/ui/play10x10.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://chorcoitp3afe" path="res://sprites/ui/pause_grayscale.png" id="6_h8uwg"]
+[ext_resource type="FontFile" uid="uid://c6qfnov2a4jnk" path="res://fonts/CONCHARS.png" id="8_q33bn"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsehb"]
+draw_center = false
+border_color = Color(0, 0.909804, 0.937255, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcwa8"]
 shader = ExtResource("6")
@@ -18,46 +23,52 @@ shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 
-[sub_resource type="Theme" id="Theme_j363j"]
-
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_8g67v")
-pause_sprite = ExtResource("7")
-play_sprite = ExtResource("9")
+pause_sprite = ExtResource("6_h8uwg")
+play_sprite = ExtResource("3_lyqqm")
 
 [node name="HealthLabel" type="Label" parent="."]
 texture_filter = 1
 material = SubResource("1")
-offset_left = 30.0
-offset_top = 15.0
-offset_right = 107.0
-offset_bottom = 57.0
-theme = ExtResource("4")
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 45.0
+offset_bottom = 21.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
-text = "HP: 0"
+text = "HP 0"
 
 [node name="ScoreLabel" type="Label" parent="."]
 texture_filter = 1
 material = SubResource("1")
-offset_left = 440.0
-offset_top = 15.0
-offset_right = 574.0
-offset_bottom = 57.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 10.0
+offset_right = -102.0
+offset_bottom = 32.0
 grow_horizontal = 0
-theme = ExtResource("4")
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
-text = "Score: 0"
+text = "Score: 
+0"
+horizontal_alignment = 1
 
 [node name="LvlLabel" type="Label" parent="."]
 texture_filter = 1
 material = SubResource("1")
-offset_left = 30.0
-offset_top = 65.0
-offset_right = 88.0
-offset_bottom = 107.0
-theme = ExtResource("4")
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 53.0
+offset_bottom = 61.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
-text = "lvl: 1"
+text = "LVL 1"
 
 [node name="PauseButton" type="Button" parent="."]
 texture_filter = 1
@@ -65,11 +76,15 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -25.0
-offset_top = 25.0
+offset_top = 60.0
 offset_right = 25.0
-offset_bottom = 75.0
+offset_bottom = 110.0
+grow_horizontal = 2
 theme = ExtResource("4")
-icon = ExtResource("8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fsehb")
+icon = ExtResource("3_lyqqm")
+flat = true
+icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="TextureRect" parent="."]
@@ -93,9 +108,12 @@ texture = ExtResource("5")
 [node name="Label" type="Label" parent="GameOverScreen"]
 texture_filter = 1
 layout_mode = 0
-offset_right = 360.0
-offset_bottom = 68.0
-theme = ExtResource("4")
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 106.0
+offset_bottom = 26.0
+scale = Vector2(3.5, 3.5)
+theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 45
 text = "you are dead"
 horizontal_alignment = 1
@@ -106,13 +124,45 @@ uppercase = true
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
-offset_left = 80.0
-offset_top = 548.0
-offset_right = 280.0
-offset_bottom = 601.0
-theme = SubResource("Theme_j363j")
+offset_left = 60.0
+offset_top = 525.0
+offset_right = 140.0
+offset_bottom = 541.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 32
+text = "try again"
+
+[node name="TimeLabel" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.0
+offset_top = 10.0
+offset_right = -32.0
+offset_bottom = 25.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+theme = ExtResource("4")
+theme_override_fonts/font = ExtResource("8_q33bn")
+text = "00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+offset_left = 159.0
+offset_top = 495.0
+offset_right = 239.0
+offset_bottom = 511.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "try again"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
