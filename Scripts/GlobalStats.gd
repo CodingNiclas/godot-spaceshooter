@@ -6,7 +6,7 @@ extends Node
 
 const max_player_hp = 5
 const init_asteroid_ratio = 0.2
-const init_asteroid_base_gravity = 0.25
+const init_asteroid_base_gravity = 100
 const player_immunity_time = 500
 const health_drop_rate = 0.02
 #const init_asteroid_gravity_variation = 0.15
@@ -20,7 +20,7 @@ var bottom_right = Vector2(0,0)
 var score = 0
 var music_volume = 0.9
 var asteroid_base_gravity = init_asteroid_base_gravity
-var asteroid_gravity_variation = 0.15
+var asteroid_gravity_variation = 20
 var phase = 1
 var game_state = 0
 var last_player_damage_time = 0
@@ -95,15 +95,21 @@ func randomized_asteroid_gravity():
 	var min_g = asteroid_base_gravity - asteroid_gravity_variation
 	var max_g = asteroid_base_gravity + asteroid_gravity_variation
 	var g = lerp(min_g,max_g,randf_range(0,1))
-	return g * 100
+	return Vector2.ZERO#g# * 100
+	
+func random_speed_diff():
+	return 1+randf_range(-asteroid_gravity_variation,asteroid_gravity_variation)
+	
 	
 # used to increase the difficulty over time
 func calculate_asteroid_stats():
-	if (score/phase) > 500: #every 1000 points get to new phase
-		asteroid_base_gravity = asteroid_base_gravity*1.2 #increase the base gravity by 20%
-		asteroid_ratio = asteroid_ratio*1.1
+	if (score/phase) > 10: #every 500 points get to new phase
+		asteroid_base_gravity = asteroid_base_gravity*(1+0.25/sqrt(phase)) #increase the base gravity
+		asteroid_ratio = ((-2)/(phase+2.5))+0.75 #increase ratio of BigAsteroids
 		phase+=1
-		print("we are now in phase "+String.num(phase))
+		print("we are now in phase ",phase)
+		print("speed: ",asteroid_base_gravity)
+		print("asteroid_ratio: ",asteroid_ratio)
 	
 func is_paused():
 	return game_state == 1

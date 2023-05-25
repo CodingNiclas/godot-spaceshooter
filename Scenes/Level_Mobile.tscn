@@ -824,7 +824,6 @@ disabled = true
 one_way_collision_margin = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2(343, 212)
 enabled = false
 zoom = Vector2(0.621, 0.621)

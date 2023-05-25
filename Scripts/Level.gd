@@ -41,17 +41,19 @@ func _on_AsteroidTimer_timeout():
 	var asterBody = asteroid.get_body()
 	var left = get_node("AsteroidTimer/AsteroidSpawnLeft").position
 	var right = get_node("AsteroidTimer/AsteroidSpawnRight").position
-	var pos = left + (right - left) * randf_range(0,1) # left + [0,1]*Vec(left->right)
+	var pos = left + (right - left) * randf_range(0,1) # spawn-pos (between left and right)
 	asterBody.position = pos
 	left = get_node("AsteroidTimer/AsteroidTargetLeft").position
 	right = get_node("AsteroidTimer/AsteroidTargetRight").position
-	var target = left.lerp(right,randf_range(0,1))
+	var target = left.lerp(right,randf_range(0,1)) #target-pos (between left and right)
 	
 	
 	globals.spawned_asteroids.append(asteroid)
 	#asterBody.gravity = (target-asterBody.position).normalized() * globals.randomized_asteroid_gravity()
-	asteroid.set_body_gravity((target-asterBody.position).normalized(),globals.randomized_asteroid_gravity())
-	asterBody.prewarm(5)
+	asteroid.set_body_gravity((target-asterBody.position).normalized(),globals.asteroid_base_gravity)
+	#globals.randomized_asteroid_gravity())
+	asterBody.velo_diff = globals.random_speed_diff()	
+	#asterBody.prewarm(5)
 	#asteroid._initialize()	
 	globals.calculate_asteroid_stats()
 	#print(self.get_child_count()) #check if asteroids are auto-destroyed
