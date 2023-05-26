@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=14 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -22,6 +22,23 @@ shader_parameter/width = 1.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msi6g"]
+bg_color = Color(0, 0.701961, 0.54902, 0.27451)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 6.0
+expand_margin_right = 1.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkfcw"]
+bg_color = Color(0, 0.670588, 0.788235, 0.772549)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_8g67v")
@@ -88,6 +105,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -163,6 +181,93 @@ theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "try again"
 
+[node name="PauseScreen" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_kcwa8")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -320.0
+offset_right = 180.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource("5")
+
+[node name="Label" type="Label" parent="PauseScreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 106.0
+offset_bottom = 26.0
+scale = Vector2(3.5, 3.5)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 45
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RestartButton" type="Button" parent="PauseScreen"]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 118.0
+offset_top = 519.0
+offset_right = 158.0
+offset_bottom = 535.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 32
+text = "reset"
+
+[node name="VolumeLabel" type="Label" parent="PauseScreen"]
+texture_filter = 1
+offset_left = 39.0
+offset_top = 108.0
+offset_right = 143.0
+offset_bottom = 119.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 45
+text = "music volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="PauseScreen/VolumeLabel"]
+layout_mode = 0
+offset_top = 11.0
+offset_right = 348.0
+offset_bottom = 27.0
+scale = Vector2(0.3, 0.3)
+theme_override_styles/slider = SubResource("StyleBoxFlat_msi6g")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_xkfcw")
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="ContinueButton" type="Button" parent="PauseScreen"]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 87.0
+offset_top = 544.0
+offset_right = 151.0
+offset_bottom = 560.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 32
+text = "continue"
+
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="value_changed" from="PauseScreen/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]
+[connection signal="pressed" from="PauseScreen/ContinueButton" to="." method="_on_PauseButton_pressed"]

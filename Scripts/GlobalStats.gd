@@ -103,7 +103,7 @@ func random_speed_diff():
 	
 # used to increase the difficulty over time
 func calculate_asteroid_stats():
-	if (score/phase) > 10: #every 500 points get to new phase
+	if (score/phase) > 500: #every 500 points get to new phase
 		asteroid_base_gravity = asteroid_base_gravity*(1+0.25/sqrt(phase)) #increase the base gravity
 		asteroid_ratio = ((-2)/(phase+2.5))+0.75 #increase ratio of BigAsteroids
 		phase+=1

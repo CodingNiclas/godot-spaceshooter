@@ -7,6 +7,8 @@ extends AudioStreamPlayer2D
 
 @export var ingame_music: AudioStream
 @export var game_over_music: AudioStream
+@export var pause_music: AudioStream
+
 
 @onready var fade_timer = get_node("MusicFadeTimer")
 
@@ -56,6 +58,7 @@ func set_bgm_volume_db(_value):
 	print("set volume to ",volume_db," db")
 
 func set_volume_perc(_value):
+	print("set bgm to ",_value)
 	if(_value>0):
 		set_bgm_volume_db(lerp(min_volume,max_volume,_value))
 		#self.volume_db = volume
@@ -65,6 +68,12 @@ func set_volume_perc(_value):
 		play_music = false
 		self.playing = false
 		print("bgm turned off")
+		
+func get_volume_perc():
+	var m = max_volume - min_volume
+	var v = volume_db-min_volume
+	print(v/m)
+	return v/m
 
 func play_game_over():
 	print(volume)
@@ -81,12 +90,25 @@ func play_game_over():
 func play_ingame():
 	if !play_music: #dont do anything if music is turned off
 		return
+	print("play ingame")
+	if self.stream == ingame_music: self.stream = null #else breaks when restarting w/o gameover(-music)
 	change_stream = ingame_music
 	change_music = true
 	target_volume = min_volume	
+	print("volume:",target_volume)
+	print("stream:",change_stream)
 	#fade_timer.start()
 	#self.stream = ingame_music
 	#self.play()
+
+func play_pause():
+	if !play_music: #dont do anything if music is turned off
+		return
+	print("play pause")
+	#if self.stream == ingame_music: self.stream = null #else breaks when restarting w/o gameover(-music)
+	change_stream = pause_music
+	change_music = true
+	target_volume = min_volume
 
 
 func _on_MusicFadeTimer_timeout():
