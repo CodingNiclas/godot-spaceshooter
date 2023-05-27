@@ -64,7 +64,8 @@ func _on_player_hit():
 	#	return
 	
 	if  player_hp >= 1: #and time-last_player_hit>player_immunity_time: #if player not dead
-		player.hit()
+		if last_player_hp > player_hp: #if player hp was actually reduced 
+			player.hit() #play hit effects (=> only when damage taken and not when invincible)
 		last_player_hp = player_hp
 	else:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

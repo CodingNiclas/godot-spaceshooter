@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccqjssmxpo1w0"]
+
+[ext_resource type="PackedScene" uid="uid://d01rg64fe756k" path="res://Scenes/Item.tscn" id="1_joutj"]
+[ext_resource type="Texture2D" uid="uid://blu221tnn560l" path="res://sprites/Items/coins/coin4_16x16_cut.png" id="2_2jnf0"]
+[ext_resource type="AudioStream" uid="uid://dsybew882m6l2" path="res://sounds/fx/items/Retro PickUp Coin 04.wav" id="3_yx0t3"]
+
+[sub_resource type="Animation" id="Animation_iya3r"]
+resource_name = "CoinIDLE"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ew4k0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuh67"]
+_data = {
+"CoinIDLE": SubResource("Animation_iya3r"),
+"RESET": SubResource("Animation_ew4k0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xuqlv"]
+animation = &"CoinIDLE"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gci6i"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xuqlv")
+nodes/Animation/position = Vector2(186.5, 194.5)
+nodes/output/position = Vector2(800, 90)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Node2D" instance=ExtResource("1_joutj")]
+fade_duration = 0.2
+effect_id = 1
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_2jnf0")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" index="0"]
+speed_scale = 0.6
+libraries = {
+"": SubResource("AnimationLibrary_fuh67")
+}
+
+[node name="AudioStreamPlayer2D" parent="." index="2"]
+stream = ExtResource("3_yx0t3")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+tree_root = SubResource("AnimationNodeBlendTree_gci6i")
+anim_player = NodePath("../Sprite/AnimationPlayer")
+active = true

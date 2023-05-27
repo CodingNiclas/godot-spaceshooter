@@ -101,6 +101,7 @@ func _on_shot_timer_timeout():
 	proj_audio.play()
 
 func hit():
+	print("hit")
 	Input.vibrate_handheld()
 	ship_audio.stream = hit_sound
 	ship_audio.play()

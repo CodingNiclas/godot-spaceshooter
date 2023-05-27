@@ -12,6 +12,8 @@ signal restart
 @onready var score_label = get_node("ScoreLabel")
 @onready var lvl_label = get_node("LvlLabel")
 @onready var time_label = get_node("TimeLabel")
+@onready var coin_label = get_node("TextureRect/CoinLabel")
+
 #buttons
 @onready var pause_button = get_node("PauseButton")
 
@@ -45,6 +47,7 @@ func _process(delta):
 	var hp = globals.get_player_hp()
 	health_label.text = "HP "+ String.num(hp)
 	score_label.text = "Score\n%05d" % [globals.score]
+	coin_label.text = "x%02d" % [globals.coins]
 	lvl_label.text = "LVL "+String.num(globals.phase)
 	if hp<=0:	
 		go_screen.visible = true

@@ -22,6 +22,7 @@ var change_music = false
 var change_stream = null
 var target_volume = 1
 var vol_thresh = 1
+var ingame_pos = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,7 +44,10 @@ func _process(delta):
 	elif change_stream != self.stream: #if new bgm not playing
 		self.volume_db = target_volume
 		self.stream = change_stream
-		self.play()
+		if stream == ingame_music:
+			self.play(ingame_pos)
+		else:
+			self.play()
 		self.target_volume = volume
 		self.volume_db = volume
 	else:	#if new bgm already playing
@@ -82,7 +86,8 @@ func play_game_over():
 	print("play game_over")
 	change_stream = game_over_music
 	target_volume = min_volume
-	change_music = true	
+	change_music = true
+	ingame_pos = 0.0
 	#fade_timer.start()
 	#self.stream = game_over_music
 	#self.play()
@@ -94,9 +99,7 @@ func play_ingame():
 	if self.stream == ingame_music: self.stream = null #else breaks when restarting w/o gameover(-music)
 	change_stream = ingame_music
 	change_music = true
-	target_volume = min_volume	
-	print("volume:",target_volume)
-	print("stream:",change_stream)
+	target_volume = min_volume
 	#fade_timer.start()
 	#self.stream = ingame_music
 	#self.play()
@@ -104,6 +107,7 @@ func play_ingame():
 func play_pause():
 	if !play_music: #dont do anything if music is turned off
 		return
+	ingame_pos = get_playback_position()
 	print("play pause")
 	#if self.stream == ingame_music: self.stream = null #else breaks when restarting w/o gameover(-music)
 	change_stream = pause_music

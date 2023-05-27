@@ -8,10 +8,6 @@ func _ready():
 	destruction_points = 15 #override default destruction points
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 	
 func deactivate_body():
 	bdy.set_collision_layer_value(2,false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=20 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -8,8 +8,15 @@
 [ext_resource type="Shader" path="res://shaders/canvas/sprite_outline.gdshader" id="6"]
 [ext_resource type="Texture2D" uid="uid://chorcoitp3afe" path="res://sprites/ui/pause_grayscale.png" id="6_h8uwg"]
 [ext_resource type="FontFile" uid="uid://c6qfnov2a4jnk" path="res://fonts/CONCHARS.png" id="8_q33bn"]
+[ext_resource type="StyleBox" uid="uid://cnq6u4d1l5h3x" path="res://Scenes/slider_area.tres" id="9_4srt8"]
+[ext_resource type="StyleBox" uid="uid://c0na7x30ikut8" path="res://Scenes/slider_bg.tres" id="9_onohu"]
+[ext_resource type="Texture2D" uid="uid://duuj432by24mn" path="res://sprites/Items/coins/coin4_atlas.png" id="11_dvaop"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8650"]
+atlas = ExtResource("11_dvaop")
+region = Rect2(4, 4, 16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsehb"]
 draw_center = false
@@ -23,22 +30,13 @@ shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msi6g"]
-bg_color = Color(0, 0.701961, 0.54902, 0.27451)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_top = 6.0
-expand_margin_right = 1.0
-expand_margin_bottom = 6.0
+[sub_resource type="MeshTexture" id="MeshTexture_35hpk"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkfcw"]
-bg_color = Color(0, 0.670588, 0.788235, 0.772549)
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
+[sub_resource type="MeshTexture" id="MeshTexture_luu23"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_ebm51"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_l2ebi"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_8g67v")
@@ -71,11 +69,33 @@ grow_horizontal = 0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
-text = "Score: 
+text = "Score
 0"
 horizontal_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 35.0
+offset_bottom = 75.0
+texture = SubResource("AtlasTexture_f8650")
+
+[node name="CoinLabel" type="Label" parent="TextureRect"]
+texture_filter = 1
+material = SubResource("1")
+offset_left = 26.0
+offset_top = 1.0
+offset_right = 50.0
+offset_bottom = 12.0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
+theme_override_colors/font_color = Color(0.968627, 0.764706, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "x00"
+
 [node name="LvlLabel" type="Label" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("1")
 offset_left = 5.0
@@ -230,6 +250,7 @@ text = "reset"
 
 [node name="VolumeLabel" type="Label" parent="PauseScreen"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 39.0
 offset_top = 108.0
 offset_right = 143.0
@@ -243,19 +264,25 @@ vertical_alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="PauseScreen/VolumeLabel"]
 layout_mode = 0
-offset_top = 11.0
+offset_top = 12.8
 offset_right = 348.0
-offset_bottom = 27.0
+offset_bottom = 34.8
 scale = Vector2(0.3, 0.3)
-theme_override_styles/slider = SubResource("StyleBoxFlat_msi6g")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_xkfcw")
+theme_override_icons/grabber = SubResource("MeshTexture_35hpk")
+theme_override_icons/grabber_highlight = SubResource("MeshTexture_luu23")
+theme_override_icons/grabber_disabled = SubResource("MeshTexture_ebm51")
+theme_override_icons/tick = SubResource("MeshTexture_l2ebi")
+theme_override_styles/slider = ExtResource("9_onohu")
+theme_override_styles/grabber_area = ExtResource("9_4srt8")
+theme_override_styles/grabber_area_highlight = ExtResource("9_4srt8")
 max_value = 1.0
 step = 0.1
-value = 1.0
+value = 0.8
 
 [node name="ContinueButton" type="Button" parent="PauseScreen"]
 texture_filter = 1
 texture_repeat = 1
+layout_mode = 0
 offset_left = 87.0
 offset_top = 544.0
 offset_right = 151.0

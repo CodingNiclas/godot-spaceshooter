@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://sgncq2pxldhm"]
+
+[ext_resource type="Script" path="res://Scenes/Item.gd" id="1_vy6mo"]
+[ext_resource type="Texture2D" uid="uid://bh6r2unohcqin" path="res://sprites/Items/heart.png" id="2_63ota"]
+[ext_resource type="AudioStream" uid="uid://mls8jdir3aou" path="res://sounds/fx/items/PP_12.wav" id="3_1ctl6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6kul"]
+
+[sub_resource type="Animation" id="Animation_mvpt3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.49927, 2.49927)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hndfy"]
+_data = {
+"RESET": SubResource("Animation_mvpt3")
+}
+
+[sub_resource type="Animation" id="Animation_kkq54"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.5, 2.5), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_nukja"]
+resource_name = "destroy"
+
+[sub_resource type="Animation" id="Animation_5obht"]
+resource_name = "left_right_pendelum"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4our"]
+_data = {
+"SpriteHeartbeat": SubResource("Animation_kkq54"),
+"destroy": SubResource("Animation_nukja"),
+"left_right_pendelum": SubResource("Animation_5obht")
+}
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_uq5ic"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmnkl"]
+animation = &"ItemAnimationLibary/left_right_pendelum"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3b688"]
+animation = &"ItemAnimationLibary/SpriteHeartbeat"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0awuq"]
+graph_offset = Vector2(0, -27)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_uq5ic")
+nodes/Add2/position = Vector2(500, 220)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3b688")
+nodes/Animation/position = Vector2(120, 120)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_gmnkl")
+"nodes/Animation 2/position" = Vector2(60, 340)
+nodes/output/position = Vector2(700, 200)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vy6mo")
+fade_duration = 0.3
+
+[node name="Area" type="Area2D" parent="." groups=["item"]]
+collision_layer = 8
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+z_index = -1
+shape = SubResource("RectangleShape2D_a6kul")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.49927, 2.49927)
+texture = ExtResource("2_63ota")
+
+[node name="AnimSpriteTransform" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hndfy"),
+"ItemAnimationLibary": SubResource("AnimationLibrary_i4our")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_0awuq")
+anim_player = NodePath("../Sprite/AnimSpriteTransform")
+active = true
+parameters/Add2/add_amount = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1ctl6")
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="Area" to="." method="_on_body_entered"]

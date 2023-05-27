@@ -9,6 +9,7 @@ const init_asteroid_ratio = 0.2
 const init_asteroid_base_gravity = 100
 const player_immunity_time = 500
 const health_drop_rate = 0.02
+const coin_drop_rate = 0.02
 #const init_asteroid_gravity_variation = 0.15
 
 
@@ -26,6 +27,7 @@ var game_state = 0
 var last_player_damage_time = 0
 var spawned_asteroids = []
 var player_immune = false
+var coins = 0
 
 func _process(_delta):
 	if player_immune:
@@ -105,7 +107,7 @@ func random_speed_diff():
 func calculate_asteroid_stats():
 	if (score/phase) > 500: #every 500 points get to new phase
 		asteroid_base_gravity = asteroid_base_gravity*(1+0.25/sqrt(phase)) #increase the base gravity
-		asteroid_ratio = ((-2)/(phase+2.5))+0.75 #increase ratio of BigAsteroids
+		asteroid_ratio = ((-2)/(phase+2.5))+0.75 #increase ratio of BigAsteroids; asymptotic to 75%
 		phase+=1
 		print("we are now in phase ",phase)
 		print("speed: ",asteroid_base_gravity)

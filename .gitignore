@@ -1,4 +1,5 @@
 .godot/
+.import/
 builds/
 Builds/
 android/
