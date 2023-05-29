@@ -11,7 +11,7 @@ const player_immunity_time = 500
 const health_drop_rate = 0.02
 const coin_drop_rate = 0.02
 #const init_asteroid_gravity_variation = 0.15
-
+const max_ship_cannon_lvl = 1 #maximum ship upgrades
 
 var player_hp = max_player_hp
 var game_over = false
@@ -28,6 +28,7 @@ var last_player_damage_time = 0
 var spawned_asteroids = []
 var player_immune = false
 var coins = 0
+var ship_cannon_lvl = 0 #used to indicate the upgrade-level of the players ship
 
 func _process(_delta):
 	if player_immune:
@@ -107,7 +108,7 @@ func random_speed_diff():
 func calculate_asteroid_stats():
 	if (score/phase) > 500: #every 500 points get to new phase
 		asteroid_base_gravity = asteroid_base_gravity*(1+0.25/sqrt(phase)) #increase the base gravity
-		asteroid_ratio = ((-2)/(phase+2.5))+0.75 #increase ratio of BigAsteroids; asymptotic to 75%
+		asteroid_ratio = ((-2)/(phase+2.5))+0.66 #increase ratio of BigAsteroids; asymptotic to 75%
 		phase+=1
 		print("we are now in phase ",phase)
 		print("speed: ",asteroid_base_gravity)
@@ -140,3 +141,6 @@ func is_player_immune():
 func heal_player(hp):
 	if player_hp<max_player_hp:
 		player_hp+=hp
+		
+func upgrade_ship_cannon():
+	ship_cannon_lvl = min(ship_cannon_lvl+1,max_ship_cannon_lvl)

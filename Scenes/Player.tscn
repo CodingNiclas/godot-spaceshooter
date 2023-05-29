@@ -1,18 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqu4ut7vf7sqy"]
+[gd_scene load_steps=17 format=3 uid="uid://dqu4ut7vf7sqy"]
 
-[ext_resource type="Texture2D" uid="uid://by4ddgtlw5a23" path="res://sprites/SpaceShips/spaceship_red.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rds1p"]
-[ext_resource type="AudioStream" uid="uid://cmk5ciy3qtobn" path="res://sounds/fx/shots/EnergyGun_Shoot1B.wav" id="3"]
-[ext_resource type="AudioStream" uid="uid://d2ai71le6flht" path="res://sounds/fx/shots/EnergyGun_Shoot1D.wav" id="4"]
-[ext_resource type="AudioStream" uid="uid://cf6yku4exyu2h" path="res://sounds/fx/shots/EnergyGun_Shoot2D.wav" id="5"]
-[ext_resource type="AudioStream" uid="uid://bhve26lanbwpm" path="res://sounds/fx/shots/EnergyGun_Shoot2C.wav" id="6"]
-[ext_resource type="AudioStream" uid="uid://dutx6dc7bxcrw" path="res://sounds/fx/shots/EnergyGun_Shoot1A.wav" id="7"]
-[ext_resource type="AudioStream" uid="uid://b4rpiv2lsl658" path="res://sounds/fx/shots/EnergyGun_Shoot2B.wav" id="8"]
-[ext_resource type="AudioStream" uid="uid://dpcuwxl6qfxng" path="res://sounds/fx/shots/EnergyGun_Shoot1C.wav" id="9"]
-[ext_resource type="AudioStream" uid="uid://bsqc3ux5bso7f" path="res://sounds/fx/shots/EnergyGun_Shoot2A.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://dutx6dc7bxcrw" path="res://sounds/fx/shots/EnergyGun_Shoot1A.wav" id="6_m5din"]
+[ext_resource type="AudioStream" uid="uid://cmk5ciy3qtobn" path="res://sounds/fx/shots/EnergyGun_Shoot1B.wav" id="7_asnht"]
+[ext_resource type="AudioStream" uid="uid://dpcuwxl6qfxng" path="res://sounds/fx/shots/EnergyGun_Shoot1C.wav" id="8_l6uf6"]
+[ext_resource type="AudioStream" uid="uid://d2ai71le6flht" path="res://sounds/fx/shots/EnergyGun_Shoot1D.wav" id="9_wtilc"]
+[ext_resource type="AudioStream" uid="uid://bsqc3ux5bso7f" path="res://sounds/fx/shots/EnergyGun_Shoot2A.wav" id="10_4tasw"]
 [ext_resource type="AudioStream" uid="uid://dutpygokgyrbn" path="res://sounds/fx/hits/explosion_04.wav" id="11"]
-[ext_resource type="Animation" path="res://animations/player_ship_hit.tres" id="12"]
+[ext_resource type="AudioStream" uid="uid://b4rpiv2lsl658" path="res://sounds/fx/shots/EnergyGun_Shoot2B.wav" id="11_8sk58"]
+[ext_resource type="Animation" uid="uid://du381gue7y1pp" path="res://animations/player_ship_hit.tres" id="12"]
+[ext_resource type="AudioStream" uid="uid://bhve26lanbwpm" path="res://sounds/fx/shots/EnergyGun_Shoot2C.wav" id="12_30063"]
+[ext_resource type="Texture2D" uid="uid://c4qq78eo5j3u8" path="res://sprites/SpaceShips/spaceship_red_1.png" id="12_gbsmp"]
 [ext_resource type="AudioStream" uid="uid://bwq8p12y4lobx" path="res://sounds/fx/hits/explosion_25.wav" id="13"]
+[ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="13_a5jdx"]
+[ext_resource type="AudioStream" uid="uid://cf6yku4exyu2h" path="res://sounds/fx/shots/EnergyGun_Shoot2D.wav" id="13_jwkid"]
+[ext_resource type="Texture2D" uid="uid://bqmoff08i8qcd" path="res://sprites/SpaceShips/spaceship_red_2.png" id="14_7x5e1"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4tcx"]
 _data = {
@@ -22,23 +24,43 @@ _data = {
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_rds1p")
-shot_sounds = Array[AudioStream]([ExtResource("7"), ExtResource("3"), ExtResource("9"), ExtResource("4"), ExtResource("10"), ExtResource("8"), ExtResource("6"), ExtResource("5")])
 hit_sound = ExtResource("11")
 die_sound = ExtResource("13")
+ship_paths = Array[NodePath]([NodePath("CharacterBody2D/Spaceship01"), NodePath("CharacterBody2D/Spaceship02")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 
-[node name="ProjectileSpawnPos" type="Marker2D" parent="CharacterBody2D"]
-position = Vector2(0, -37)
-
-[node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/ProjectileSpawnPos"]
-position = Vector2(0, 37)
-volume_db = -9.0
-
-[node name="SpaceshipRed" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Spaceship01" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("1")
+texture = ExtResource("12_gbsmp")
+script = ExtResource("13_a5jdx")
+cannon_paths = Array[NodePath]([NodePath("ProjectileAudioPlayer")])
+shot_sounds = Array[AudioStream]([ExtResource("6_m5din"), ExtResource("7_asnht"), ExtResource("8_l6uf6"), ExtResource("9_wtilc"), ExtResource("10_4tasw"), ExtResource("11_8sk58"), ExtResource("12_30063"), ExtResource("13_jwkid")])
+
+[node name="ProjectileSpawnPos" type="Marker2D" parent="CharacterBody2D/Spaceship01"]
+visible = false
+position = Vector2(0, -40)
+
+[node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship01"]
+position = Vector2(0, -40)
+volume_db = -9.0
+
+[node name="Spaceship02" type="Sprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(0, 2)
+texture = ExtResource("14_7x5e1")
+script = ExtResource("13_a5jdx")
+cannon_paths = Array[NodePath]([NodePath("ProjectileAudioPlayer"), NodePath("ProjectileAudioPlayer2")])
+shot_sounds = Array[AudioStream]([ExtResource("6_m5din"), ExtResource("7_asnht"), ExtResource("8_l6uf6"), ExtResource("9_wtilc"), ExtResource("10_4tasw"), ExtResource("11_8sk58"), ExtResource("12_30063"), ExtResource("13_jwkid")])
+
+[node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship02"]
+position = Vector2(38.5, -1.5)
+volume_db = -9.0
+
+[node name="ProjectileAudioPlayer2" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship02"]
+position = Vector2(-38.5, -1.5)
+volume_db = -9.0
 
 [node name="ShipAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("11")

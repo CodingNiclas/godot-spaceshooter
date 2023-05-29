@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=26 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://chorcoitp3afe" path="res://sprites/ui/pause_grayscale.png" id="6_h8uwg"]
 [ext_resource type="FontFile" uid="uid://c6qfnov2a4jnk" path="res://fonts/CONCHARS.png" id="8_q33bn"]
 [ext_resource type="StyleBox" uid="uid://cnq6u4d1l5h3x" path="res://Scenes/slider_area.tres" id="9_4srt8"]
+[ext_resource type="Texture2D" uid="uid://b5xivtln0jisr" path="res://sprites/SpaceShips/spaceship_red_0.png" id="9_l1egr"]
 [ext_resource type="StyleBox" uid="uid://c0na7x30ikut8" path="res://Scenes/slider_bg.tres" id="9_onohu"]
 [ext_resource type="Texture2D" uid="uid://duuj432by24mn" path="res://sprites/Items/coins/coin4_atlas.png" id="11_dvaop"]
 
@@ -29,6 +30,21 @@ shader_parameter/width = 1.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti43u"]
+bg_color = Color(0, 0.72549, 0.388235, 0.682353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31bfj"]
+bg_color = Color(0, 0.72549, 0.388235, 0.854902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygrg0"]
+bg_color = Color(0, 0.72549, 0.388235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3hf"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ili7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="MeshTexture" id="MeshTexture_35hpk"]
 
@@ -84,6 +100,7 @@ texture = SubResource("AtlasTexture_f8650")
 [node name="CoinLabel" type="Label" parent="TextureRect"]
 texture_filter = 1
 material = SubResource("1")
+layout_mode = 0
 offset_left = 26.0
 offset_top = 1.0
 offset_right = 50.0
@@ -125,7 +142,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="TextureRect" parent="."]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -133,10 +149,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -198.0
+offset_top = -352.0
+offset_right = 162.0
+offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -171,6 +187,40 @@ theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "try again"
 
+[node name="UpgradeLabel" type="Label" parent="GameOverScreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 77.0
+offset_top = 140.0
+offset_right = 173.0
+offset_bottom = 151.0
+scale = Vector2(2, 2)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 45
+text = "Upgrade Ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CurrentShip" type="Sprite2D" parent="GameOverScreen/UpgradeLabel"]
+position = Vector2(46.5714, 26.8571)
+scale = Vector2(0.285714, 0.285714)
+texture = ExtResource("9_l1egr")
+
+[node name="UpgradeButton" type="Button" parent="GameOverScreen/UpgradeLabel"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 96.0
+offset_bottom = 63.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ti43u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_31bfj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ygrg0")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ew3hf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5ili7")
+disabled = true
+text = "upgrade ship
+(5 coins)"
+
 [node name="TimeLabel" type="Label" parent="."]
 texture_filter = 1
 anchors_preset = 5
@@ -202,6 +252,7 @@ theme_override_font_sizes/font_size = 32
 text = "try again"
 
 [node name="PauseScreen" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -294,6 +345,7 @@ text = "continue"
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/UpgradeLabel/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="value_changed" from="PauseScreen/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]

@@ -16,6 +16,8 @@ signal restart
 
 #buttons
 @onready var pause_button = get_node("PauseButton")
+@onready var upgrade_button = get_node("GameOverScreen/UpgradeLabel/UpgradeButton")
+
 
 @onready var volume_slider = get_node("PauseScreen/VolumeLabel/VolumeSlider")
 
@@ -30,6 +32,7 @@ signal restart
 var paused = false
 var elapsed = 0
 
+const upgrade_cost = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +41,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	go_screen.visible = false
 	pause_screen.visible = false
+	upgrade_button.text = "upgrade ship\n(%d coins)"%[upgrade_cost]
 	self.connect("restart",Callable(self.get_parent(),"_on_restart"))
 	#health_label.text = "HP: 00"
 
@@ -50,11 +54,16 @@ func _process(delta):
 	coin_label.text = "x%02d" % [globals.coins]
 	lvl_label.text = "LVL "+String.num(globals.phase)
 	if hp<=0:	
-		go_screen.visible = true
-		globals.set_game_over(true)
-		pause_button.visible = false #deactivate pause function when game over
+		game_over()
 	if not globals.is_paused() and not globals.is_game_over():
 		update_game_time(delta)
+
+
+func game_over():
+	go_screen.visible = true
+	globals.set_game_over(true)
+	pause_button.visible = false #deactivate pause function when game over
+	upgrade_button.disabled = globals.coins<upgrade_cost #disabled if we cant afford upgrade
 
 
 
@@ -91,7 +100,10 @@ func _on_PauseButton_pressed():
 		globals.pause()
 	paused = globals.is_paused()
 	
-	
+func _on_UpgradeButton_pressed():
+	print("upgrade player weapon")
+	globals.coins-=upgrade_cost
+	globals.upgrade_ship_cannon()
 	
 func update_game_time(delta):
 	elapsed += int(delta*1000)#game_timer.wait_time*1000

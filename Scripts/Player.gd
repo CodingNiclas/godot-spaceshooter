@@ -1,15 +1,17 @@
 extends Node2D
 
-@export var shot_sounds: Array[AudioStream] # (Array, AudioStream)
-@export var hit_anim: Animation
+#@export var shot_sounds: Array[AudioStream] # (Array, AudioStream)
+#@export var hit_anim: Animation
 @export var hit_sound: AudioStream
 @export var die_sound: AudioStream
+@export var ship_paths: Array[NodePath]
+var spaceships: Array[Node2D]
 
-var projectile_scene = load("res://Scenes/Projectile.tscn")
-@onready var proj_spawn_pos = get_node("CharacterBody2D/ProjectileSpawnPos")
+#@onready var projectile_scene = load("res://Scenes/Projectile.tscn")
+#@onready var proj_spawn_pos = get_node("CharacterBody2D/ProjectileSpawnPos")
 @onready var body = get_node("CharacterBody2D")
 @onready var globals = get_node("/root/GlobalStats")
-@onready var proj_audio = get_node("CharacterBody2D/ProjectileSpawnPos/ProjectileAudioPlayer")
+#@onready var proj_audio = get_node("CharacterBody2D/ProjectileSpawnPos/ProjectileAudioPlayer")
 @onready var ship_audio = get_node("CharacterBody2D/ShipAudioPlayer")
 @onready var ship_animator = get_node("CharacterBody2D/AnimationPlayer")
 @onready var shot_timer = get_node("ShotTimer")
@@ -22,6 +24,8 @@ var projectile_scene = load("res://Scenes/Projectile.tscn")
 
 const drag_factor = 1
 
+
+var activeship = null
 var follow_mouse = true
 var last_pos
 var mouse_pos
@@ -31,6 +35,11 @@ var top_left = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for x in ship_paths:
+		spaceships.append(get_node(x))
+		
+		
+	update_active_ship()
 	last_pos = position
 	mouse_pos = position
 	randomize()
@@ -89,16 +98,17 @@ func _input(event):
 		last_pos = event.position
 
 func _on_shot_timer_timeout():
-	var shot = projectile_scene.instantiate()
-	#get_node("CharacterBody2D").add_child(shot)
-	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
-	shot.global_position = proj_spawn_pos.global_position
-	#print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
-	# play randomized sfx
-	var n = randi()%shot_sounds.size()
-	#print("playing sfx "+String(n))
-	proj_audio.stream = shot_sounds[n]
-	proj_audio.play()
+	activeship.shoot_all()
+#	var shot = projectile_scene.instantiate()
+#	#get_node("CharacterBody2D").add_child(shot)
+#	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
+#	shot.global_position = proj_spawn_pos.global_position
+#	#print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
+#	# play randomized sfx
+#	var n = randi()%shot_sounds.size()
+#	#print("playing sfx "+String(n))
+#	proj_audio.stream = shot_sounds[n]
+#	proj_audio.play()
 
 func hit():
 	print("hit")
@@ -121,3 +131,17 @@ func revive():
 	shot_timer.start()	
 	body.collision_mask = 1
 	body.collision_layer = 1
+	update_active_ship()
+	
+func update_active_ship():
+#	spaceships[0].visible = false
+#	spaceships[1].visible = false
+	for s in spaceships:
+		s.visible = false
+	activeship = spaceships[min(globals.ship_cannon_lvl,spaceships.size()-1)]
+	activeship.visible = true
+	
+	
+	
+	
+	
