@@ -65,6 +65,10 @@ func set_volume_perc(_value):
 	print("set bgm to ",_value)
 	if(_value>0):
 		set_bgm_volume_db(lerp(min_volume,max_volume,_value))
+		if play_music == false:
+			play_music = true
+			playing = true
+			print("bgm tuned on again.")
 		#self.volume_db = volume
 		#print("bgm volume changed to "+String(self.volume_db))	
 	else:
