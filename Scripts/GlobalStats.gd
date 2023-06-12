@@ -42,6 +42,7 @@ func _process(_delta):
 func _ready():
 	randomize()
 	get_node("/root/Bgm").set_volume_perc(music_volume)
+	loadgame()
 	pass # Replace with function body.
 
 func set_top_left(_vector):
@@ -82,6 +83,7 @@ func refill_player_hp():
 	player_hp = max_player_hp
 	
 func set_game_over(_value):
+	savegame() #save stats
 	game_over = _value
 	
 func is_game_over():
@@ -144,3 +146,26 @@ func heal_player(hp):
 		
 func upgrade_ship_cannon():
 	ship_cannon_lvl = min(ship_cannon_lvl+1,max_ship_cannon_lvl)
+	
+	
+#func save():
+#    var save_dict = {
+#        "coins" : coins
+#    }
+#	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	
+func loadgame():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return # Error! We don't have a save to load.
+	var savegame = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var data = JSON.parse_string(savegame.get_as_text())
+	print(data)
+	coins = data.coins
+	
+
+func savegame():
+	var savegame = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var game_data = {"coins" : coins  }
+	#savegame.storeline(JSON.stringify(game_data))
+	savegame.store_string(JSON.stringify(game_data))
+	#save_game.close()
