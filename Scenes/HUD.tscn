@@ -177,23 +177,31 @@ uppercase = true
 [node name="RestartButton" type="Button" parent="GameOverScreen"]
 texture_filter = 1
 texture_repeat = 1
-layout_mode = 0
-offset_left = 60.0
-offset_top = 525.0
-offset_right = 140.0
-offset_bottom = 541.0
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -90.0
+offset_right = -15.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
-text = "try again"
+text = "retry"
 
 [node name="UpgradeLabel" type="Label" parent="GameOverScreen"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 77.0
-offset_top = 140.0
+offset_top = 172.0
 offset_right = 173.0
-offset_bottom = 151.0
+offset_bottom = 183.0
 scale = Vector2(2, 2)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 45
@@ -220,6 +228,27 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_5ili7")
 disabled = true
 text = "upgrade ship
 (5 coins)"
+
+[node name="ToMainMenuButton" type="Button" parent="GameOverScreen"]
+texture_filter = 1
+texture_repeat = 1
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -160.0
+offset_right = -31.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
 
 [node name="TimeLabel" type="Label" parent="."]
 texture_filter = 1
@@ -346,6 +375,7 @@ text = "continue"
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/UpgradeLabel/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="value_changed" from="PauseScreen/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]

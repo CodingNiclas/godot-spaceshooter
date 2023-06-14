@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6o3fi8xu58xd"]
+[gd_scene load_steps=6 format=3 uid="uid://b6o3fi8xu58xd"]
 
 [ext_resource type="AudioStream" uid="uid://ciau2728dl608" path="res://sounds/bgm_loops/Madness All Around Me.wav" id="1"]
+[ext_resource type="AudioStream" uid="uid://dx2ffikkyxue6" path="res://sounds/bgm_loops/Hordes and Hordes.wav" id="1_6ohkq"]
 [ext_resource type="Script" path="res://Scripts/BGM.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://pnssgoqnxid8" path="res://sounds/bgm_loops/The Circus Is Here.wav" id="3"]
-[ext_resource type="AudioStream" uid="uid://d2e37atawa346" path="res://sounds/bgm_loops/To the Moon.wav" id="4_pwwn5"]
+[ext_resource type="AudioStream" uid="uid://c75omqo0bucwj" path="res://sounds/bgm_loops/Pleasant Adventure.wav" id="5_q6b41"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 process_mode = 3
 position = Vector2(500, 300)
-stream = ExtResource("4_pwwn5")
-volume_db = -80.0
+stream = ExtResource("1_6ohkq")
 autoplay = true
 script = ExtResource("2")
 ingame_music = ExtResource("1")
 game_over_music = ExtResource("3")
-pause_music = ExtResource("4_pwwn5")
+pause_music = ExtResource("5_q6b41")
+title_music = ExtResource("1_6ohkq")
 
 [node name="MusicFadeTimer" type="Timer" parent="."]
 wait_time = 0.5

@@ -69,7 +69,6 @@ func game_over():
 
 func _on_RestartButton_pressed():
 	globals.unpause()	
-		
 	globals.refill_player_hp()
 	go_screen.visible = false
 	pause_screen.visible = false
@@ -127,3 +126,9 @@ func update_game_time(delta):
 
 func _on_volume_slider_changed(value):
 	bgm.set_volume_perc(value)
+
+
+func _on_to_main_menu_button_pressed():
+	_on_RestartButton_pressed()
+	bgm.play_title()
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

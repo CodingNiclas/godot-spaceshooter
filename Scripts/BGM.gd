@@ -8,6 +8,7 @@ extends AudioStreamPlayer2D
 @export var ingame_music: AudioStream
 @export var game_over_music: AudioStream
 @export var pause_music: AudioStream
+@export var title_music: AudioStream
 
 
 @onready var fade_timer = get_node("MusicFadeTimer")
@@ -118,6 +119,12 @@ func play_pause():
 	change_music = true
 	target_volume = min_volume
 
+func play_title():
+	if !play_music: #dont do anything if music is turned off
+		return
+	change_stream = title_music
+	change_music = true
+	target_volume = min_volume
 
 func _on_MusicFadeTimer_timeout():
 	change_music = true
