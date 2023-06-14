@@ -35,8 +35,9 @@ corner_radius_bottom_left = 1
 anti_aliasing = false
 
 [resource]
-default_font = ExtResource("1_jhygp")
+Button/fonts/font = ExtResource("1_jhygp")
 Button/styles/focus = SubResource("StyleBoxFlat_gnrlk")
 Button/styles/hover = SubResource("StyleBoxFlat_1j30h")
 Button/styles/normal = SubResource("StyleBoxFlat_o6pah")
 Button/styles/pressed = SubResource("StyleBoxFlat_inhcy")
+Label/fonts/font = ExtResource("1_jhygp")

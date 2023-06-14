@@ -21,6 +21,7 @@ func _ready():
 	globals.set_bottom_right(get_node("BaseBlue640X640/BottomRight").global_position)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) #hide mouse
 	Input.set_default_cursor_shape(Input.CURSOR_CROSS)
+	bgm.play_ingame()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -8,7 +8,7 @@
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 process_mode = 3
 position = Vector2(500, 300)
-stream = ExtResource("1")
+stream = ExtResource("4_pwwn5")
 volume_db = -80.0
 autoplay = true
 script = ExtResource("2")

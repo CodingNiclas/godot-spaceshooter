@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Smashteroids"
-run/main_scene="res://Scenes/Level_Mobile.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 

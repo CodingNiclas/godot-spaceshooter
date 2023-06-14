@@ -1,0 +1,21 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://da8pt74ksrten"
+path="res://.godot/imported/CONCHARSX2.png-94169550a1062662441b5026ff65aaeb.fontdata"
+
+[deps]
+
+source_file="res://fonts/CONCHARSX2.png"
+dest_files=["res://.godot/imported/CONCHARSX2.png-94169550a1062662441b5026ff65aaeb.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("0-127")
+columns=16
+rows=16
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true
