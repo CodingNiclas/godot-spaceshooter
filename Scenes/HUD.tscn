@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=31 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -12,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://b5xivtln0jisr" path="res://sprites/SpaceShips/spaceship_red_0.png" id="9_l1egr"]
 [ext_resource type="StyleBox" uid="uid://c0na7x30ikut8" path="res://Scenes/slider_bg.tres" id="9_onohu"]
 [ext_resource type="Texture2D" uid="uid://duuj432by24mn" path="res://sprites/Items/coins/coin4_atlas.png" id="11_dvaop"]
+[ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="13_hxs0t"]
+[ext_resource type="FontFile" uid="uid://da8pt74ksrten" path="res://fonts/CONCHARSX2.png" id="13_popwy"]
+[ext_resource type="Texture2D" uid="uid://b4kx85rkkia2" path="res://sprites/ui/button48_disabled.png" id="13_rb5pr"]
+[ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="14_36bg3"]
+[ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="15_2na2r"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 
@@ -149,10 +154,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -198.0
-offset_top = -352.0
-offset_right = 162.0
-offset_bottom = 288.0
+offset_left = -178.0
+offset_top = -320.0
+offset_right = 182.0
+offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -174,7 +179,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="RestartButton" type="Button" parent="GameOverScreen"]
+[node name="RestartButton_old" type="Button" parent="GameOverScreen"]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 layout_direction = 2
@@ -198,10 +204,10 @@ text = "retry"
 [node name="UpgradeLabel" type="Label" parent="GameOverScreen"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 77.0
-offset_top = 172.0
-offset_right = 173.0
-offset_bottom = 183.0
+offset_left = 88.0
+offset_top = 140.0
+offset_right = 184.0
+offset_bottom = 151.0
 scale = Vector2(2, 2)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 45
@@ -211,11 +217,12 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="CurrentShip" type="Sprite2D" parent="GameOverScreen/UpgradeLabel"]
-position = Vector2(46.5714, 26.8571)
+position = Vector2(50, 27.5)
 scale = Vector2(0.285714, 0.285714)
 texture = ExtResource("9_l1egr")
 
-[node name="UpgradeButton" type="Button" parent="GameOverScreen/UpgradeLabel"]
+[node name="UpgradeButton_old" type="Button" parent="GameOverScreen/UpgradeLabel"]
+visible = false
 layout_mode = 0
 offset_top = 42.0
 offset_right = 96.0
@@ -229,7 +236,32 @@ disabled = true
 text = "upgrade ship
 (5 coins)"
 
+[node name="UpgradeButton" type="TextureButton" parent="GameOverScreen/UpgradeLabel"]
+texture_filter = 1
+offset_left = -6.0
+offset_top = 47.0
+offset_right = 108.0
+offset_bottom = 85.0
+texture_normal = ExtResource("13_hxs0t")
+texture_pressed = ExtResource("14_36bg3")
+texture_hover = ExtResource("15_2na2r")
+texture_disabled = ExtResource("13_rb5pr")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="GameOverScreen/UpgradeLabel/UpgradeButton"]
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 107.0
+offset_bottom = 30.0
+theme = ExtResource("5_6vorb")
+theme_override_fonts/font = ExtResource("8_q33bn")
+text = "upgrade ship
+(5 coins)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ToMainMenuButton" type="Button" parent="GameOverScreen"]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 layout_direction = 2
@@ -249,6 +281,50 @@ scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "Main Menu"
+
+[node name="RestartButton" type="TextureButton" parent="GameOverScreen"]
+texture_filter = 1
+offset_left = 85.0
+offset_top = 480.0
+offset_right = 282.0
+offset_bottom = 547.0
+texture_normal = ExtResource("13_hxs0t")
+texture_pressed = ExtResource("14_36bg3")
+texture_hover = ExtResource("15_2na2r")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="GameOverScreen/RestartButton"]
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 81.0
+offset_bottom = 28.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("5_6vorb")
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="TextureButton" parent="GameOverScreen"]
+texture_filter = 1
+offset_left = 102.0
+offset_top = 556.0
+offset_right = 272.0
+offset_bottom = 612.0
+texture_normal = ExtResource("13_hxs0t")
+texture_pressed = ExtResource("14_36bg3")
+texture_hover = ExtResource("15_2na2r")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="GameOverScreen/MainMenuButton"]
+offset_left = 12.0
+offset_top = 14.0
+offset_right = 156.0
+offset_bottom = 41.0
+theme = ExtResource("5_6vorb")
+theme_override_fonts/font = ExtResource("13_popwy")
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TimeLabel" type="Label" parent="."]
 texture_filter = 1
@@ -314,7 +390,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="RestartButton" type="Button" parent="PauseScreen"]
+[node name="RestartButton_old" type="Button" parent="PauseScreen"]
 visible = false
 texture_filter = 1
 texture_repeat = 1
@@ -359,7 +435,8 @@ max_value = 1.0
 step = 0.1
 value = 0.8
 
-[node name="ContinueButton" type="Button" parent="PauseScreen"]
+[node name="ContinueButton_old" type="Button" parent="PauseScreen"]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 0
@@ -372,11 +449,37 @@ theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "continue"
 
+[node name="ContinueButton" type="TextureButton" parent="PauseScreen"]
+texture_filter = 1
+offset_left = 90.0
+offset_top = 531.0
+offset_right = 287.0
+offset_bottom = 598.0
+texture_normal = ExtResource("13_hxs0t")
+texture_pressed = ExtResource("14_36bg3")
+texture_hover = ExtResource("15_2na2r")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="PauseScreen/ContinueButton"]
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 81.0
+offset_bottom = 28.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("5_6vorb")
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/RestartButton_old" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/UpgradeLabel/UpgradeButton_old" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/UpgradeLabel/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/ToMainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameOverScreen/MainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PauseScreen/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseScreen/RestartButton_old" to="." method="_on_RestartButton_pressed"]
 [connection signal="value_changed" from="PauseScreen/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]
+[connection signal="pressed" from="PauseScreen/ContinueButton_old" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="PauseScreen/ContinueButton" to="." method="_on_PauseButton_pressed"]

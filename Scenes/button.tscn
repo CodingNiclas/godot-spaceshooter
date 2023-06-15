@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cseb3ucs1tpmh"]
+
+[ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="1_ubwoi"]
+[ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="2_scdka"]
+[ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="3_n7mre"]
+[ext_resource type="Script" path="res://Scripts/Button.gd" id="4_fnyuj"]
+[ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="5_25e57"]
+[ext_resource type="FontFile" uid="uid://d2yv30ow7odef" path="res://fonts/CONCHARSX4.png" id="6_stbep"]
+
+[node name="StartButton" type="TextureButton"]
+texture_filter = 1
+offset_right = 199.0
+offset_bottom = 68.0
+texture_normal = ExtResource("1_ubwoi")
+texture_pressed = ExtResource("2_scdka")
+texture_hover = ExtResource("3_n7mre")
+stretch_mode = 4
+script = ExtResource("4_fnyuj")
+text = "Play"
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 185.0
+offset_bottom = 56.0
+theme = ExtResource("5_25e57")
+theme_override_fonts/font = ExtResource("6_stbep")
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1

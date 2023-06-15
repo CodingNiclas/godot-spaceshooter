@@ -18,7 +18,7 @@ signal restart
 #buttons
 @onready var pause_button = get_node("PauseButton")
 @onready var upgrade_button = get_node("GameOverScreen/UpgradeLabel/UpgradeButton")
-
+@onready var upgrade_button_text = get_node("GameOverScreen/UpgradeLabel/UpgradeButton/Text")
 
 @onready var volume_slider = get_node("PauseScreen/VolumeLabel/VolumeSlider")
 
@@ -42,7 +42,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	go_screen.visible = false
 	pause_screen.visible = false
-	upgrade_button.text = "upgrade ship\n(%d coins)"%[upgrade_cost]
+	upgrade_button_text.text = "upgrade ship\n(%d coins)"%[upgrade_cost]
 	self.connect("restart",Callable(self.get_parent(),"_on_restart"))
 	#health_label.text = "HP: 00"
 
@@ -65,6 +65,10 @@ func game_over():
 	globals.set_game_over(true)
 	pause_button.visible = false #deactivate pause function when game over
 	upgrade_button.disabled = globals.coins<upgrade_cost #disabled if we cant afford upgrade 
+	if upgrade_button.disabled:
+		upgrade_button_text.set("theme_override_colors/font_color", Color(1,1,1,0.75))
+	else:
+		upgrade_button_text.set("theme_override_colors/font_color", Color(1,1,1,1))
 	upgrade_label.visible=globals.ship_cannon_lvl==0 # hide if already bought
 
 

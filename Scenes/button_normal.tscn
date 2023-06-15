@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1cdr8ribgspc"]
+
+[ext_resource type="PackedScene" uid="uid://cseb3ucs1tpmh" path="res://Scenes/button.tscn" id="1_2us7k"]
+[ext_resource type="FontFile" uid="uid://da8pt74ksrten" path="res://fonts/CONCHARSX2.png" id="2_htrml"]
+
+[node name="StartButton" instance=ExtResource("1_2us7k")]
+offset_right = 97.0
+offset_bottom = 33.0
+
+[node name="Text" parent="." index="0"]
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 85.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("2_htrml")

@@ -1,21 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1psum70dpgwr"]
+[gd_scene load_steps=14 format=3 uid="uid://bkmavy4hkfbgb"]
 
-[ext_resource type="Shader" path="res://shaders/canvas/sprite_outline.gdshader" id="1_pgw7o"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_wuq5l"]
 [ext_resource type="Texture2D" uid="uid://cxp3hgchbufui" path="res://sprites/Preview2.png" id="2_tbc6m"]
 [ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="3_m68ly"]
+[ext_resource type="Texture2D" uid="uid://cm4kax0367gl1" path="res://sprites/ui/SpaceShooterAssetPack_IU.png" id="5_65lsn"]
 [ext_resource type="FontFile" uid="uid://d2yv30ow7odef" path="res://fonts/CONCHARSX4.png" id="5_hhynl"]
 [ext_resource type="Texture2D" uid="uid://dtrmuugfu1rke" path="res://sprites/Level/AsteroidsAndPlanets/asteroid_b4.png" id="6_vhosp"]
 [ext_resource type="Texture2D" uid="uid://bqmoff08i8qcd" path="res://sprites/SpaceShips/spaceship_red_2.png" id="7_hah7q"]
 [ext_resource type="Texture2D" uid="uid://c4qq78eo5j3u8" path="res://sprites/SpaceShips/spaceship_red_1.png" id="8_dfvjy"]
+[ext_resource type="PackedScene" uid="uid://cseb3ucs1tpmh" path="res://Scenes/button.tscn" id="9_sbtho"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3vle"]
-shader = ExtResource("1_pgw7o")
-shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx251"]
+atlas = ExtResource("5_65lsn")
+region = Rect2(32.1104, 48.1624, 23.783, 5.94575)
 
 [sub_resource type="Animation" id="Animation_4gmx2"]
 length = 0.001
@@ -102,7 +99,6 @@ script = ExtResource("1_wuq5l")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_g3vle")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,7 +131,8 @@ theme_override_fonts/font = ExtResource("5_hhynl")
 text = "Sm4shter0IDS"
 uppercase = true
 
-[node name="StartButton" type="Button" parent="."]
+[node name="StartButton_old" type="Button" parent="."]
+visible = false
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -144,16 +141,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -107.0
-offset_top = -201.0
-offset_right = -27.0
+offset_left = -114.0
+offset_top = -238.0
+offset_right = -20.0
 offset_bottom = -185.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(3, 3)
-theme = ExtResource("3_m68ly")
 theme_override_font_sizes/font_size = 32
-text = "Start!"
+text = "safa"
+icon = SubResource("AtlasTexture_jx251")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="AsteroidB4" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -174,4 +174,12 @@ position = Vector2(332, 402)
 scale = Vector2(1.90789, 1.90789)
 texture = ExtResource("7_hah7q")
 
+[node name="StartButton" parent="." instance=ExtResource("9_sbtho")]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 759.0
+offset_right = 412.0
+offset_bottom = 826.0
+
+[connection signal="pressed" from="StartButton_old" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
