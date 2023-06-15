@@ -72,7 +72,8 @@ func damage_player(_damage):
 		set_player_hp(player_hp-_damage)
 		last_player_damage_time = time
 		player_immune = true
-	#return player_hp>0
+		return true #return that damage was applied
+	return false #return that *no* damage was applied
 	
 func remove(_obj):
 	for child in _obj.get_children():
@@ -160,12 +161,19 @@ func loadgame():
 	var savegame = FileAccess.open("user://savegame.save", FileAccess.READ)
 	var data = JSON.parse_string(savegame.get_as_text())
 	print(data)
-	coins = data.coins
+	coins = get_save_key(data,"coins",0)
+	ship_cannon_lvl = get_save_key(data,"ship_cannon_lvl",0)
 	
+func get_save_key(dict,key,default):
+		if key in dict:
+			return dict.get(key)
+		else:
+			print("dict doesn't have ",key)
+			return default
 
 func savegame():
 	var savegame = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	var game_data = {"coins" : coins  }
+	var game_data = {"coins" : coins, "ship_cannon_lvl" : ship_cannon_lvl}
 	#savegame.storeline(JSON.stringify(game_data))
 	savegame.store_string(JSON.stringify(game_data))
 	#save_game.close()

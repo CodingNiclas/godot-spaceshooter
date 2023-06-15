@@ -14,6 +14,7 @@ signal player_hit
 @onready var sprite = get_node("Area2D/Asteroid4")
 @onready var max_y = globals.bottom_right.y
 
+@onready var player = get_node("/root/Node2D_Level/Player")
 
 var destroyed = false
 var rotation_direction = randf_range(-1, 1)
@@ -92,9 +93,19 @@ func player_collide():
 	play_hit_effects()
 	deactivate_body()	
 	
+	
 	destroyed = true
-	globals.damage_player(1) #reduce player_health
-	emit_signal("player_hit")
+	var hp = globals.get_player_hp()
+	if hp>0:
+		if(globals.damage_player(1)): #try reducing player_health and if successful 
+			print("HIT")
+			player.hit() #play hit effects
+	if globals.get_player_hp()==0:
+		get_node("/root/Bgm").play_game_over()
+		get_node("/root/Node2D_Level/AsteroidTimer").stop()
+		player.die()
+	
+	#emit_signal("player_hit")
 	#if !alive:
 	#	emit_signal("player_dead")
 	#	globals.set_game_over(true)

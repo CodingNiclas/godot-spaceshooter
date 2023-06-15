@@ -115,7 +115,11 @@ func hit():
 	Input.vibrate_handheld()
 	ship_audio.stream = hit_sound
 	ship_audio.play()
-	ship_animator.play("player_ship_hit")
+	if globals.ship_cannon_lvl==0:
+		ship_animator.play("player_ship_hit")
+	else:
+		ship_animator.play("player_ship_hit_2")
+		
 	#player_audio
 
 func die():

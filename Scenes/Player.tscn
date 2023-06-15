@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dqu4ut7vf7sqy"]
+[gd_scene load_steps=18 format=3 uid="uid://dqu4ut7vf7sqy"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rds1p"]
 [ext_resource type="AudioStream" uid="uid://dutx6dc7bxcrw" path="res://sounds/fx/shots/EnergyGun_Shoot1A.wav" id="6_m5din"]
@@ -16,9 +16,38 @@
 [ext_resource type="AudioStream" uid="uid://cf6yku4exyu2h" path="res://sounds/fx/shots/EnergyGun_Shoot2D.wav" id="13_jwkid"]
 [ext_resource type="Texture2D" uid="uid://bqmoff08i8qcd" path="res://sprites/SpaceShips/spaceship_red_2.png" id="14_7x5e1"]
 
+[sub_resource type="Animation" id="Animation_uwhcl"]
+resource_name = "player_ship_hit_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("CharacterBody2D/Spaceship01:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Spaceship02:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4tcx"]
 _data = {
-"player_ship_hit": ExtResource("12")
+"player_ship_hit": ExtResource("12"),
+"player_ship_hit_2": SubResource("Animation_uwhcl")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -37,10 +66,6 @@ texture = ExtResource("12_gbsmp")
 script = ExtResource("13_a5jdx")
 cannon_paths = Array[NodePath]([NodePath("ProjectileAudioPlayer")])
 shot_sounds = Array[AudioStream]([ExtResource("6_m5din"), ExtResource("7_asnht"), ExtResource("8_l6uf6"), ExtResource("9_wtilc"), ExtResource("10_4tasw"), ExtResource("11_8sk58"), ExtResource("12_30063"), ExtResource("13_jwkid")])
-
-[node name="ProjectileSpawnPos" type="Marker2D" parent="CharacterBody2D/Spaceship01"]
-visible = false
-position = Vector2(0, -40)
 
 [node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship01"]
 position = Vector2(0, -40)

@@ -13,6 +13,7 @@ signal restart
 @onready var lvl_label = get_node("LvlLabel")
 @onready var time_label = get_node("TimeLabel")
 @onready var coin_label = get_node("TextureRect/CoinLabel")
+@onready var upgrade_label = get_node("GameOverScreen/UpgradeLabel")
 
 #buttons
 @onready var pause_button = get_node("PauseButton")
@@ -63,7 +64,8 @@ func game_over():
 	go_screen.visible = true
 	globals.set_game_over(true)
 	pause_button.visible = false #deactivate pause function when game over
-	upgrade_button.disabled = globals.coins<upgrade_cost #disabled if we cant afford upgrade
+	upgrade_button.disabled = globals.coins<upgrade_cost #disabled if we cant afford upgrade 
+	upgrade_label.visible=globals.ship_cannon_lvl==0 # hide if already bought
 
 
 

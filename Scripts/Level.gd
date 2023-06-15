@@ -6,7 +6,7 @@ var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
 @onready var bgm = get_node("/root/Bgm")
 @onready var asteroid_timer = get_node("AsteroidTimer")
 @onready var player = get_node("Player")
-@onready var last_player_hp = 99
+@onready var last_player_hp = GlobalStats.max_player_hp
 #var asteroid_storage
 # Declare member variables here. Examples:
 # var a = 2
@@ -60,12 +60,16 @@ func _on_AsteroidTimer_timeout():
 	#print(self.get_child_count()) #check if asteroids are auto-destroyed
 
 func _on_player_hit():
+	print("LAST:",last_player_hp)
 	var player_hp = globals.get_player_hp()
+	print("NOW:",player_hp)
+	
 	#if globals.is_player_immune():
 	#	return
 	
 	if  player_hp >= 1: #and time-last_player_hit>player_immunity_time: #if player not dead
 		if last_player_hp > player_hp: #if player hp was actually reduced 
+			print("PLAY!")
 			player.hit() #play hit effects (=> only when damage taken and not when invincible)
 		last_player_hp = player_hp
 	else:
