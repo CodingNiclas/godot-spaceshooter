@@ -6,6 +6,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 var hp = 1
+var speed = 600
 
 @onready var globals = get_node("/root/GlobalStats")
 @onready var rb = get_node("Area2D")
@@ -21,7 +22,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	rb.position = rb.position + Vector2.UP*_delta*500
+	rb.position = rb.position + Vector2.UP*_delta*speed
 	#rb.linear_velocity = Vector2.UP*500	
 	if rb.global_position.y < 0:
 		globals.remove(self)

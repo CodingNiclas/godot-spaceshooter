@@ -13,11 +13,11 @@ var gravity = Vector2(0,1) #gravity direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	globals.add_spawned(self)
 	#var tween = get_tree().create_tween()
 	#var sprite = get_node("Sprite")
 	##tween.tween_property(sprite, "modulate", Color.RED, 1)
 	#tween.tween_property(sprite, "position", Vector2(20,0), 1)
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

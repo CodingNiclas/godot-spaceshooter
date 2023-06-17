@@ -5,6 +5,9 @@ extends Node2D
 @export var hit_sound: AudioStream
 @export var die_sound: AudioStream
 @export var ship_paths: Array[NodePath]
+
+#@export var shot_timer: Timer
+
 var spaceships: Array[Node2D]
 
 #@onready var projectile_scene = load("res://Scenes/Projectile.tscn")
@@ -98,7 +101,7 @@ func _input(event):
 		last_pos = event.position
 
 func _on_shot_timer_timeout():
-	activeship.shoot_all()
+	activeship.shoot_next()
 #	var shot = projectile_scene.instantiate()
 #	#get_node("CharacterBody2D").add_child(shot)
 #	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
@@ -140,11 +143,13 @@ func revive():
 func update_active_ship():
 #	spaceships[0].visible = false
 #	spaceships[1].visible = false
+	var lvl = globals.ship_cannon_lvl
 	for s in spaceships:
 		s.visible = false
-	activeship = spaceships[min(globals.ship_cannon_lvl,spaceships.size()-1)]
+	activeship = spaceships[min(lvl,spaceships.size()-1)]
 	activeship.visible = true
 	
+	shot_timer.wait_time = 0.3 if lvl==0 else 0.2
 	
 	
 	

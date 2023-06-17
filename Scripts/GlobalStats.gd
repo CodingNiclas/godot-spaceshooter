@@ -16,6 +16,9 @@ const max_ship_cannon_lvl = 1 #maximum ship upgrades
 var player_hp = max_player_hp
 var game_over = false
 var asteroid_ratio = init_asteroid_ratio
+var asteroid_min_spawn = 1 #no. of min asteroids spawned
+var asteroid_max_spawn = 1 #no. of max asteroids spawned
+
 var top_left = Vector2(0,0)
 var bottom_right = Vector2(0,0)
 var score = 0
@@ -25,7 +28,7 @@ var asteroid_gravity_variation = 20
 var phase = 1
 var game_state = 0
 var last_player_damage_time = 0
-var spawned_asteroids = []
+var spawned_objects = [] #objects that were spawned (used to clear field on restart)
 var player_immune = false
 var coins = 0
 var ship_cannon_lvl = 0 #used to indicate the upgrade-level of the players ship
@@ -106,16 +109,22 @@ func randomized_asteroid_gravity():
 func random_speed_diff():
 	return 1+randf_range(-asteroid_gravity_variation,asteroid_gravity_variation)
 	
+func random_asteroid_spawn_count():
+	return randf_range(asteroid_min_spawn,asteroid_max_spawn)
 	
 # used to increase the difficulty over time
 func calculate_asteroid_stats():
 	if (score/phase) > 500: #every 500 points get to new phase
-		asteroid_base_gravity = asteroid_base_gravity*(1+0.25/sqrt(phase)) #increase the base gravity
+		asteroid_base_gravity = asteroid_base_gravity*(1+0.15/sqrt(phase)) #increase the base gravity
 		asteroid_ratio = ((-2)/(phase+2.5))+0.66 #increase ratio of BigAsteroids; asymptotic to 75%
+		asteroid_min_spawn = max(1,1+0.35*log(phase/2)) #max for preventing -inf on phase 2
+		asteroid_max_spawn = 1+0.35*log(phase)
+		
 		phase+=1
 		print("we are now in phase ",phase)
 		print("speed: ",asteroid_base_gravity)
 		print("asteroid_ratio: ",asteroid_ratio)
+		print("average spawns: ",(asteroid_min_spawn+asteroid_max_spawn)/2)
 	
 func is_paused():
 	return game_state == 1
@@ -128,13 +137,16 @@ func unpause():
 	get_tree().paused = false
 	game_state = 0
 	
+func add_spawned(obj):
+	spawned_objects.append(obj)
+
 func remove_spawned_asteroids():
-	for asteroid in spawned_asteroids:
+	for asteroid in spawned_objects:
 		if asteroid != null:
 			asteroid.queue_free()
 		#else: 
 		#	print("null-asteroid")
-	spawned_asteroids = Array()
+	spawned_objects = Array()
 	
 func is_player_immune():
 	print("the player is "+ "immune" if player_immune else "not immune")
@@ -147,13 +159,8 @@ func heal_player(hp):
 		
 func upgrade_ship_cannon():
 	ship_cannon_lvl = min(ship_cannon_lvl+1,max_ship_cannon_lvl)
-	
-	
-#func save():
-#    var save_dict = {
-#        "coins" : coins
-#    }
-#	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+
+### Save and Loading data
 	
 func loadgame():
 	if not FileAccess.file_exists("user://savegame.save"):

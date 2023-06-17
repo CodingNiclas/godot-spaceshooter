@@ -9,8 +9,8 @@
 
 [node name="StartButton" type="TextureButton"]
 texture_filter = 1
-offset_right = 199.0
-offset_bottom = 68.0
+offset_right = 241.0
+offset_bottom = 81.0
 texture_normal = ExtResource("1_ubwoi")
 texture_pressed = ExtResource("2_scdka")
 texture_hover = ExtResource("3_n7mre")
@@ -20,10 +20,11 @@ text = "Play"
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 12.0
-offset_right = 185.0
-offset_bottom = 56.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 184.0
+offset_bottom = 54.0
+scale = Vector2(1.25, 1.25)
 theme = ExtResource("5_25e57")
 theme_override_fonts/font = ExtResource("6_stbep")
 text = "PLAY"

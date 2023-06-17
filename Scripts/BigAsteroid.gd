@@ -26,6 +26,6 @@ func split(dir):
 	area.global_position = bdy.global_position+dir*45
 	a.set_body_gravity(dir,bdy.velocity)
 	area.velocity = bdy.velocity
-	globals.spawned_asteroids.append(a)
+	globals.add_spawned(a)
 
 	

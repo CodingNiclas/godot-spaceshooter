@@ -1,17 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkmavy4hkfbgb"]
+[gd_scene load_steps=18 format=3 uid="uid://bkmavy4hkfbgb"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_wuq5l"]
 [ext_resource type="Texture2D" uid="uid://cxp3hgchbufui" path="res://sprites/Preview2.png" id="2_tbc6m"]
 [ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="3_m68ly"]
-[ext_resource type="Texture2D" uid="uid://cm4kax0367gl1" path="res://sprites/ui/SpaceShooterAssetPack_IU.png" id="5_65lsn"]
 [ext_resource type="FontFile" uid="uid://d2yv30ow7odef" path="res://fonts/CONCHARSX4.png" id="5_hhynl"]
 [ext_resource type="Texture2D" uid="uid://dtrmuugfu1rke" path="res://sprites/Level/AsteroidsAndPlanets/asteroid_b4.png" id="6_vhosp"]
 [ext_resource type="Texture2D" uid="uid://bqmoff08i8qcd" path="res://sprites/SpaceShips/spaceship_red_2.png" id="7_hah7q"]
 [ext_resource type="Texture2D" uid="uid://c4qq78eo5j3u8" path="res://sprites/SpaceShips/spaceship_red_1.png" id="8_dfvjy"]
+[ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="9_bwws2"]
 [ext_resource type="PackedScene" uid="uid://cseb3ucs1tpmh" path="res://Scenes/button.tscn" id="9_sbtho"]
+[ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="10_l1cnw"]
+[ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="11_wf1fq"]
+[ext_resource type="PackedScene" uid="uid://blkvjvikmmcy2" path="res://Scenes/credits.tscn" id="12_vvjd0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t8onc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jx251"]
-atlas = ExtResource("5_65lsn")
+atlas = SubResource("CompressedTexture2D_t8onc")
 region = Rect2(32.1104, 48.1624, 23.783, 5.94575)
 
 [sub_resource type="Animation" id="Animation_4gmx2"]
@@ -88,7 +93,7 @@ _data = {
 "idle": SubResource("Animation_0c7g6")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("start_button", "credit_screen", "credit_button", "credit_button_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,6 +101,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wuq5l")
+start_button = NodePath("StartButton")
+credit_screen = NodePath("Credits")
+credit_button = NodePath("CredditButton")
+credit_button_text = NodePath("CredditButton/Text")
 
 [node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
@@ -176,10 +185,64 @@ texture = ExtResource("7_hah7q")
 
 [node name="StartButton" parent="." instance=ExtResource("9_sbtho")]
 layout_mode = 0
-offset_left = 215.0
-offset_top = 759.0
-offset_right = 412.0
-offset_bottom = 826.0
+offset_left = 196.0
+offset_top = 845.0
+offset_right = 444.0
+offset_bottom = 929.0
+
+[node name="CredditButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 230.0
+offset_top = 733.0
+offset_right = 395.0
+offset_bottom = 789.0
+texture_normal = ExtResource("9_bwws2")
+texture_pressed = ExtResource("10_l1cnw")
+texture_hover = ExtResource("11_wf1fq")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="CredditButton"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 64.0
+offset_bottom = 23.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("3_m68ly")
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 237.0
+offset_top = 675.0
+offset_right = 390.0
+offset_bottom = 726.0
+texture_normal = ExtResource("9_bwws2")
+texture_pressed = ExtResource("10_l1cnw")
+texture_hover = ExtResource("11_wf1fq")
+stretch_mode = 4
+
+[node name="Text" type="Label" parent="SettingsButton"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 77.0
+offset_bottom = 26.0
+scale = Vector2(2, 2)
+theme = ExtResource("3_m68ly")
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" parent="." instance=ExtResource("12_vvjd0")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="StartButton_old" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CredditButton" to="." method="_on_creddit_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_creddit_button_pressed"]

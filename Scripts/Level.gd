@@ -15,6 +15,7 @@ var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("log",log(0.5))
 	randomize()
 	#set edges of playfield:
 	globals.set_top_left(get_node("BaseBlue640X640/TopLeft").global_position)
@@ -28,6 +29,13 @@ func _ready():
 #	pass
 
 func _on_AsteroidTimer_timeout():
+	#print("from ", globals.asteroid_min_spawn, " to ", globals.asteroid_max_spawn)
+	var count = globals.random_asteroid_spawn_count()
+	#print("spawning ",count, " asteroids.")
+	for x in range(0,count):
+		spawn()
+	
+func spawn():
 	var c1 = randf_range(0,1)>globals.asteroid_ratio	
 	var asteroid = asteroid_scene.instantiate() if c1 else big_asteroid_scene.instantiate()
 	#var sprite = asteroid.get_children()[0]
@@ -49,7 +57,7 @@ func _on_AsteroidTimer_timeout():
 	var target = left.lerp(right,randf_range(0,1)) #target-pos (between left and right)
 	
 	
-	globals.spawned_asteroids.append(asteroid)
+	globals.add_spawned(asteroid)
 	#asterBody.gravity = (target-asterBody.position).normalized() * globals.randomized_asteroid_gravity()
 	asteroid.set_body_gravity((target-asterBody.position).normalized(),globals.asteroid_base_gravity)
 	#globals.randomized_asteroid_gravity())
