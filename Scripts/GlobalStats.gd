@@ -22,6 +22,7 @@ var asteroid_max_spawn = 1 #no. of max asteroids spawned
 var top_left = Vector2(0,0)
 var bottom_right = Vector2(0,0)
 var score = 0
+var highscore = 100
 var music_volume = 0.9
 var asteroid_base_gravity = init_asteroid_base_gravity
 var asteroid_gravity_variation = 20
@@ -77,7 +78,10 @@ func damage_player(_damage):
 		player_immune = true
 		return true #return that damage was applied
 	return false #return that *no* damage was applied
-	
+
+#func add_points(x):
+#	score = score + x
+
 func remove(_obj):
 	for child in _obj.get_children():
 		child.queue_free()
@@ -87,6 +91,7 @@ func refill_player_hp():
 	player_hp = max_player_hp
 	
 func set_game_over(_value):
+	highscore = max(score,highscore)
 	savegame() #save stats
 	game_over = _value
 	
@@ -170,6 +175,7 @@ func loadgame():
 	print(data)
 	coins = get_save_key(data,"coins",0)
 	ship_cannon_lvl = get_save_key(data,"ship_cannon_lvl",0)
+	highscore = get_save_key(data,"highscore",0)
 	
 func get_save_key(dict,key,default):
 		if key in dict:
@@ -180,7 +186,7 @@ func get_save_key(dict,key,default):
 
 func savegame():
 	var savegame = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	var game_data = {"coins" : coins, "ship_cannon_lvl" : ship_cannon_lvl}
+	var game_data = {"coins" : coins, "ship_cannon_lvl" : ship_cannon_lvl, "highscore": highscore}
 	#savegame.storeline(JSON.stringify(game_data))
 	savegame.store_string(JSON.stringify(game_data))
 	#save_game.close()

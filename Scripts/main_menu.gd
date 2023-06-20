@@ -6,6 +6,7 @@ extends Control
 @export var credit_button:TextureButton
 @export var credit_button_text:Label
 
+@onready var highscore_label = get_node("HighscoreLabel")
 
 @onready var globals = GlobalStats
 
@@ -14,6 +15,7 @@ var credits_active = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#get_node("/root/Bgm")
+	highscore_label.text = "Highscore\n%05dpts" % [globals.highscore]
 	var anim = get_node("AnimationPlayer")
 	anim.play("idle")
 

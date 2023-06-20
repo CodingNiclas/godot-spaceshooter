@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=36 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b4kx85rkkia2" path="res://sprites/ui/button48_disabled.png" id="13_rb5pr"]
 [ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="14_36bg3"]
 [ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="15_2na2r"]
+[ext_resource type="FontFile" uid="uid://d2yv30ow7odef" path="res://fonts/CONCHARSX4.png" id="18_w24js"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 
@@ -58,6 +59,107 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="MeshTexture" id="MeshTexture_ebm51"]
 
 [sub_resource type="MeshTexture" id="MeshTexture_l2ebi"]
+
+[sub_resource type="Animation" id="Animation_j16cd"]
+resource_name = "highscore_indication"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.4, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 1, 1.3, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("HighscorePtsLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HighscorePtsLabel:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.4, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xb1yt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HighscorePtsLabel:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fh4vg"]
+resource_name = "empty"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jgoy"]
+_data = {
+"RESET": SubResource("Animation_xb1yt"),
+"empty": SubResource("Animation_fh4vg"),
+"highscore_indication": SubResource("Animation_j16cd")
+}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_8g67v")
@@ -147,6 +249,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -478,6 +581,51 @@ theme = ExtResource("5_6vorb")
 text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 331.0
+offset_right = 200.0
+offset_bottom = 418.0
+grow_horizontal = 2
+scale = Vector2(1.2, 1.2)
+theme = ExtResource("4")
+theme_override_colors/font_color = Color(1, 0.521569, 0.180392, 1)
+theme_override_fonts/font = ExtResource("18_w24js")
+text = "NEW HIGHSCORE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="HighscorePtsLabel" type="Label" parent="HighscoreLabel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 66.0
+offset_right = 250.0
+offset_bottom = 133.0
+grow_horizontal = 2
+theme = ExtResource("4")
+theme_override_colors/font_color = Color(1, 0.521569, 0.180392, 1)
+theme_override_fonts/font = ExtResource("18_w24js")
+text = "10000pts"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HighscoreLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_0jgoy")
+}
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="GameOverScreen/RestartButton_old" to="." method="_on_RestartButton_pressed"]

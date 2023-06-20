@@ -27,11 +27,17 @@ signal restart
 @onready var globals = get_node("/root/GlobalStats")
 @onready var bgm = get_node("/root/Bgm")
 
+#highscore
+@onready var highscore_anim = get_node("HighscoreLabel/AnimationPlayer")
+@onready var highscore_pts_label = get_node("HighscoreLabel/HighscorePtsLabel")
+var highscore_displayed = false
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 var paused = false
 var elapsed = 0
+
 
 const upgrade_cost = 25
 
@@ -58,6 +64,8 @@ func _process(delta):
 		game_over()
 	if not globals.is_paused() and not globals.is_game_over():
 		update_game_time(delta)
+	if !highscore_displayed && globals.score > globals.highscore:
+		show_new_highscore()
 
 
 func game_over():
@@ -85,6 +93,7 @@ func _on_RestartButton_pressed():
 	
 	pause_button.icon = pause_sprite
 	paused = false
+	highscore_displayed = false
 	
 
 
@@ -138,3 +147,9 @@ func _on_to_main_menu_button_pressed():
 	_on_RestartButton_pressed()
 	bgm.play_title()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func show_new_highscore():
+	highscore_pts_label.text = "%05dpts" % [globals.score]
+	highscore_anim.play("highscore_indication")
+	highscore_displayed = true
+	

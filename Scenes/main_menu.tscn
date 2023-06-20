@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bkmavy4hkfbgb"]
+[gd_scene load_steps=20 format=3 uid="uid://bkmavy4hkfbgb"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_wuq5l"]
 [ext_resource type="Texture2D" uid="uid://cxp3hgchbufui" path="res://sprites/Preview2.png" id="2_tbc6m"]
 [ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="3_m68ly"]
 [ext_resource type="FontFile" uid="uid://d2yv30ow7odef" path="res://fonts/CONCHARSX4.png" id="5_hhynl"]
-[ext_resource type="Texture2D" uid="uid://dtrmuugfu1rke" path="res://sprites/Level/AsteroidsAndPlanets/asteroid_b4.png" id="6_vhosp"]
+[ext_resource type="Texture2D" uid="uid://yr0i80ok8x2k" path="res://sprites/Level/AsteroidsAndPlanets/Asteroids.png" id="5_u10e6"]
 [ext_resource type="Texture2D" uid="uid://bqmoff08i8qcd" path="res://sprites/SpaceShips/spaceship_red_2.png" id="7_hah7q"]
 [ext_resource type="Texture2D" uid="uid://c4qq78eo5j3u8" path="res://sprites/SpaceShips/spaceship_red_1.png" id="8_dfvjy"]
 [ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="9_bwws2"]
@@ -12,12 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="10_l1cnw"]
 [ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="11_wf1fq"]
 [ext_resource type="PackedScene" uid="uid://blkvjvikmmcy2" path="res://Scenes/credits.tscn" id="12_vvjd0"]
+[ext_resource type="FontFile" uid="uid://da8pt74ksrten" path="res://fonts/CONCHARSX2.png" id="13_cudif"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t8onc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jx251"]
 atlas = SubResource("CompressedTexture2D_t8onc")
 region = Rect2(32.1104, 48.1624, 23.783, 5.94575)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dxon"]
+atlas = ExtResource("5_u10e6")
+region = Rect2(12.9469, 72.7485, 41.9857, 47.0748)
 
 [sub_resource type="Animation" id="Animation_4gmx2"]
 length = 0.001
@@ -84,7 +89,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(5, 5), Vector2(6.523, 7)]
+"values": [Vector2(1.5, 1.5), Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fs453"]
@@ -130,10 +135,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_top = 45.0
-offset_right = 184.0
-offset_bottom = 80.0
+offset_left = -197.0
+offset_top = 96.0
+offset_right = 187.0
+offset_bottom = 131.0
 grow_horizontal = 2
 theme = ExtResource("3_m68ly")
 theme_override_fonts/font = ExtResource("5_hhynl")
@@ -166,10 +171,10 @@ expand_icon = true
 
 [node name="AsteroidB4" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(296, 192)
-rotation = 4.69113
-scale = Vector2(5.77181, 6.01354)
-texture = ExtResource("6_vhosp")
+position = Vector2(306, 274)
+rotation = 1.63424
+scale = Vector2(1.7601, 1.7601)
+texture = SubResource("AtlasTexture_2dxon")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SpaceshipRed")
@@ -179,7 +184,7 @@ libraries = {
 
 [node name="SpaceshipRed" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(332, 402)
+position = Vector2(304.763, 527.601)
 scale = Vector2(1.90789, 1.90789)
 texture = ExtResource("7_hah7q")
 
@@ -241,6 +246,22 @@ vertical_alignment = 1
 [node name="Credits" parent="." instance=ExtResource("12_vvjd0")]
 visible = false
 layout_mode = 1
+
+[node name="HighscoreLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = -92.0
+offset_bottom = 38.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("3_m68ly")
+theme_override_fonts/font = ExtResource("13_cudif")
+text = "Highscore:
+99999Pts"
 
 [connection signal="pressed" from="StartButton_old" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
