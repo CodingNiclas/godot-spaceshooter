@@ -15,7 +15,7 @@ var credits_active = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#get_node("/root/Bgm")
-	highscore_label.text = "Highscore\n%05dpts" % [globals.highscore]
+	highscore_label.text = "Highscore\n%05dpts" % [globals.highscore] if globals.highscore>0 else ""
 	var anim = get_node("AnimationPlayer")
 	anim.play("idle")
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://blkvjvikmmcy2"]
+[gd_scene load_steps=7 format=3 uid="uid://blkvjvikmmcy2"]
 
 [ext_resource type="Script" path="res://Scenes/credits.gd" id="1_6qrn6"]
 [ext_resource type="Theme" uid="uid://cj8wdj52s0x7v" path="res://ui/bitmap_theme.tres" id="1_t1l5s"]
 [ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="2_1megp"]
 [ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="3_u47re"]
+[ext_resource type="FontFile" uid="uid://da8pt74ksrten" path="res://fonts/CONCHARSX2.png" id="3_xnkt8"]
 [ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="4_nq6i3"]
 
 [node name="Credits" type="Control" node_paths=PackedStringArray("text", "close_button")]
@@ -28,11 +29,13 @@ color = Color(1, 1, 1, 0.0470588)
 
 [node name="CreditsText" type="RichTextLabel" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 108.0
 offset_top = 151.0
 offset_right = 511.0
 offset_bottom = 730.0
 theme = ExtResource("1_t1l5s")
+theme_override_fonts/normal_font = ExtResource("3_xnkt8")
 text = "-----------
 Soundtrack|
 -----------
@@ -72,6 +75,7 @@ scroll_following = true
 
 [node name="CloseButton" type="TextureButton" parent="."]
 texture_filter = 1
+layout_mode = 0
 offset_left = 217.0
 offset_top = 753.0
 offset_right = 382.0

@@ -43,6 +43,9 @@ const upgrade_cost = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#prevent highscore displaying in first round:
+	if globals.highscore<=0: #if no previous highscore set
+		highscore_displayed = true #act as if new-highscore was shown 
 	pause_button.icon = pause_sprite
 	volume_slider.value = bgm.get_volume_perc()
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -149,7 +152,7 @@ func _on_to_main_menu_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func show_new_highscore():
-	highscore_pts_label.text = "%05dpts" % [globals.score]
+	highscore_pts_label.text = "%dpts" % [globals.score]
 	highscore_anim.play("highscore_indication")
 	highscore_displayed = true
 	
