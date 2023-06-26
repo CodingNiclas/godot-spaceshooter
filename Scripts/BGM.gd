@@ -15,7 +15,7 @@ extends AudioStreamPlayer2D
 
 const min_volume = -40
 const max_volume = 0
-var volume #the music volume that is set
+var volume=1 #the music volume that is set
 var play_music = true #indicates if music should be played
 #onready var base_volume_db = self.volume_db
 
@@ -56,6 +56,7 @@ func _process(delta):
 		change_music = false
 	
 
+#obsolete
 func set_bgm_volume_db(_value):
 	volume = _value
 	target_volume = _value

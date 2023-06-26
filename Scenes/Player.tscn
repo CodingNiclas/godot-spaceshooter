@@ -70,6 +70,7 @@ shot_sounds = Array[AudioStream]([ExtResource("6_m5din"), ExtResource("7_asnht")
 [node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship01"]
 position = Vector2(0, -40)
 volume_db = -9.0
+bus = &"SFX"
 
 [node name="Spaceship02" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -83,14 +84,17 @@ shot_directions = Array[Vector2]([Vector2(-0.05, -1), Vector2(0.05, -1)])
 [node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship02"]
 position = Vector2(38.5, -1.5)
 volume_db = -9.0
+bus = &"SFX"
 
 [node name="ProjectileAudioPlayer2" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship02"]
 position = Vector2(-38.5, -1.5)
 volume_db = -9.0
+bus = &"SFX"
 
 [node name="ShipAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("11")
 volume_db = 5.0
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
 root_node = NodePath("../..")

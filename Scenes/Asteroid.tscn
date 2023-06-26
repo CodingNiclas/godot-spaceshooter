@@ -37,6 +37,7 @@ explosiveness = 1.0
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4")
 volume_db = -6.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

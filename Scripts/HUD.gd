@@ -20,7 +20,9 @@ signal restart
 @onready var upgrade_button = get_node("GameOverScreen/UpgradeLabel/UpgradeButton")
 @onready var upgrade_button_text = get_node("GameOverScreen/UpgradeLabel/UpgradeButton/Text")
 
-@onready var volume_slider = get_node("PauseScreen/VolumeLabel/VolumeSlider")
+#sliders
+@onready var bgm_slider = get_node("PauseScreen/BgmLabel/VolumeSlider")
+@onready var sfx_slider = get_node("PauseScreen/SfxLabel/VolumeSlider")
 
 @onready var go_screen = get_node("GameOverScreen")
 @onready var pause_screen = get_node("PauseScreen")
@@ -31,6 +33,12 @@ signal restart
 @onready var highscore_anim = get_node("HighscoreLabel/AnimationPlayer")
 @onready var highscore_pts_label = get_node("HighscoreLabel/HighscorePtsLabel")
 var highscore_displayed = false
+
+#audio
+@onready var sfx_bus = AudioServer.get_bus_index("SFX")
+@onready var bgm_bus = AudioServer.get_bus_index("BGM")
+
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -43,11 +51,17 @@ const upgrade_cost = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#slider initialization:
+	bgm_slider.value = pow(2,AudioServer.get_bus_volume_db(bgm_bus))
+	sfx_slider.value = pow(2,AudioServer.get_bus_volume_db(sfx_bus))
+	#sfx_slider.min_value = 0.0001
+	#sfx_slider.step = 0.0001
+	
+	
 	#prevent highscore displaying in first round:
 	if globals.highscore<=0: #if no previous highscore set
 		highscore_displayed = true #act as if new-highscore was shown 
 	pause_button.icon = pause_sprite
-	volume_slider.value = bgm.get_volume_perc()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	go_screen.visible = false
 	pause_screen.visible = false
@@ -142,9 +156,6 @@ func update_game_time(delta):
 #	time_label.text = str_elapsed
 
 
-func _on_volume_slider_changed(value):
-	bgm.set_volume_perc(value)
-
 
 func _on_to_main_menu_button_pressed():
 	_on_RestartButton_pressed()
@@ -156,3 +167,17 @@ func show_new_highscore():
 	highscore_anim.play("highscore_indication")
 	highscore_displayed = true
 	
+	
+func _on_volume_slider_changed(value):
+	#bgm.set_volume_perc(value)
+	if value == 0:
+		AudioServer.set_bus_volume_db(bgm_bus, -80)
+	else:
+		AudioServer.set_bus_volume_db(bgm_bus, log(value)*20)
+
+
+func _on_sfx_slider_value_changed(value):
+	if value == 0:
+		AudioServer.set_bus_volume_db(sfx_bus, -80)
+	else:
+		AudioServer.set_bus_volume_db(sfx_bus, log(value)*20)

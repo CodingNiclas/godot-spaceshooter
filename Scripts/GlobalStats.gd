@@ -45,7 +45,7 @@ func _process(_delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	get_node("/root/Bgm").set_volume_perc(music_volume)
+	get_node("/root/Bgm").volume_db = log(music_volume)*20 #set_volume_perc(music_volume)
 	loadgame()
 	pass # Replace with function body.
 

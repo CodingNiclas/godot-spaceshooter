@@ -11,6 +11,7 @@ process_mode = 3
 position = Vector2(500, 300)
 stream = ExtResource("1_6ohkq")
 autoplay = true
+bus = &"BGM"
 script = ExtResource("2")
 ingame_music = ExtResource("1")
 game_over_music = ExtResource("3")

@@ -466,7 +466,6 @@ theme_override_font_sizes/font_size = 32
 text = "try again"
 
 [node name="PauseScreen" type="TextureRect" parent="."]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -513,7 +512,7 @@ theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 32
 text = "reset"
 
-[node name="VolumeLabel" type="Label" parent="PauseScreen"]
+[node name="BgmLabel" type="Label" parent="PauseScreen"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 39.0
@@ -524,10 +523,9 @@ scale = Vector2(2.5, 2.5)
 theme = ExtResource("5_6vorb")
 theme_override_font_sizes/font_size = 45
 text = "music volume"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VolumeSlider" type="HSlider" parent="PauseScreen/VolumeLabel"]
+[node name="VolumeSlider" type="HSlider" parent="PauseScreen/BgmLabel"]
 layout_mode = 0
 offset_top = 12.8
 offset_right = 348.0
@@ -541,8 +539,38 @@ theme_override_styles/slider = ExtResource("9_onohu")
 theme_override_styles/grabber_area = ExtResource("9_4srt8")
 theme_override_styles/grabber_area_highlight = ExtResource("9_4srt8")
 max_value = 1.0
-step = 0.1
+step = 0.2
 value = 0.8
+
+[node name="SfxLabel" type="Label" parent="PauseScreen"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 39.0
+offset_top = 172.0
+offset_right = 143.0
+offset_bottom = 183.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 45
+text = "sfx volume"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="PauseScreen/SfxLabel"]
+layout_mode = 0
+offset_top = 12.8
+offset_right = 348.0
+offset_bottom = 34.8
+scale = Vector2(0.3, 0.3)
+theme_override_icons/grabber = SubResource("MeshTexture_35hpk")
+theme_override_icons/grabber_highlight = SubResource("MeshTexture_luu23")
+theme_override_icons/grabber_disabled = SubResource("MeshTexture_ebm51")
+theme_override_icons/tick = SubResource("MeshTexture_l2ebi")
+theme_override_styles/slider = ExtResource("9_onohu")
+theme_override_styles/grabber_area = ExtResource("9_4srt8")
+theme_override_styles/grabber_area_highlight = ExtResource("9_4srt8")
+max_value = 1.0
+step = 0.2
+value = 1.0
 
 [node name="ContinueButton_old" type="Button" parent="PauseScreen"]
 visible = false
@@ -636,6 +664,7 @@ libraries = {
 [connection signal="pressed" from="GameOverScreen/MainMenuButton" to="." method="_on_to_main_menu_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseScreen/RestartButton_old" to="." method="_on_RestartButton_pressed"]
-[connection signal="value_changed" from="PauseScreen/VolumeLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]
+[connection signal="value_changed" from="PauseScreen/BgmLabel/VolumeSlider" to="." method="_on_volume_slider_changed"]
+[connection signal="value_changed" from="PauseScreen/SfxLabel/VolumeSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="PauseScreen/ContinueButton_old" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="PauseScreen/ContinueButton" to="." method="_on_PauseButton_pressed"]

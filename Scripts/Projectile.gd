@@ -17,7 +17,7 @@ var speed = 600
 func _ready():
 	direction = direction.normalized()
 	#print(transform.rotated(direction.x))
-	print(transform.looking_at(global_position + direction))
+	#print(transform.looking_at(global_position + direction))
 	#rb.transform = rb.transform.looking_at(rb.global_position + direction)
 	rb.transform.y = -direction
 	#randomize()
