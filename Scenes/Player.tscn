@@ -79,7 +79,7 @@ texture = ExtResource("14_7x5e1")
 script = ExtResource("13_a5jdx")
 cannon_paths = Array[NodePath]([NodePath("ProjectileAudioPlayer"), NodePath("ProjectileAudioPlayer2")])
 shot_sounds = Array[AudioStream]([ExtResource("6_m5din"), ExtResource("7_asnht"), ExtResource("8_l6uf6"), ExtResource("9_wtilc"), ExtResource("10_4tasw"), ExtResource("11_8sk58"), ExtResource("12_30063"), ExtResource("13_jwkid")])
-shot_directions = Array[Vector2]([Vector2(-0.05, -1), Vector2(0.05, -1)])
+shot_directions = Array[Vector2]([Vector2(-0.075, -1), Vector2(0.075, -1)])
 
 [node name="ProjectileAudioPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/Spaceship02"]
 position = Vector2(38.5, -1.5)

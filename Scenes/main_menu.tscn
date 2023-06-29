@@ -171,7 +171,7 @@ expand_icon = true
 
 [node name="AsteroidB4" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(306, 274)
+position = Vector2(315, 272)
 rotation = 1.63424
 scale = Vector2(1.7601, 1.7601)
 texture = SubResource("AtlasTexture_2dxon")
@@ -184,7 +184,7 @@ libraries = {
 
 [node name="SpaceshipRed" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(304.763, 527.601)
+position = Vector2(315, 496)
 scale = Vector2(1.90789, 1.90789)
 texture = ExtResource("7_hah7q")
 

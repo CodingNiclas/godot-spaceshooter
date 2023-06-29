@@ -34,5 +34,8 @@ func _on_creddit_button_pressed():
 	credits_active = !credits_active
 	start_button.visible = !credits_active
 	credit_button.visible = !credits_active
-	credit_screen.visible = credits_active
+	#credit_screen.visible = credits_active
+	if credits_active:
+		credit_screen.activate()
+	#credit_screen.get_node("CreditsText").visible_ratio = 0
 	credit_button_text.text = "close" if credits_active else "Credits"
