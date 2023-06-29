@@ -69,8 +69,7 @@ Graphics|
 >pixel-coins 
  by totuslotus
 
-
-THANK YOU <3"
+MADE WITH GODOT"
 scroll_following = true
 
 [node name="CloseButton" type="TextureButton" parent="."]

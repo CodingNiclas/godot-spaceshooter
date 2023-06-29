@@ -13,7 +13,9 @@ config_version=5
 config/name="Smashteroids"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0")
-config/icon="res://icon.png"
+boot_splash/image="res://logo_vertical_color_dark.png"
+config/icon="res://stable_diffusion_xl.png"
+boot_splash/minimum_display_time=2500
 
 [autoload]
 
@@ -89,4 +91,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
