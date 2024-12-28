@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qqvrygbcsh86"
-path="res://.godot/imported/Stars_Red.png-6718cf5cfe558751fa649e968dcf0fd4.ctex"
+uid="uid://eth2hacw3ynf"
+path="res://.godot/imported/Ships.png-9a39f0607c1bf37c36e598013f76d96a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Level/Stars/Stars_Red.png"
-dest_files=["res://.godot/imported/Stars_Red.png-6718cf5cfe558751fa649e968dcf0fd4.ctex"]
+source_file="res://sprites/gimp/Ships.png"
+dest_files=["res://.godot/imported/Ships.png-9a39f0607c1bf37c36e598013f76d96a.ctex"]
 
 [params]
 

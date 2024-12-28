@@ -2,6 +2,7 @@ extends Node2D
 
 var asteroid_scene = load("res://Scenes/Asteroid.tscn")
 var big_asteroid_scene = load("res://Scenes/BigAsteroid.tscn")
+var ufo_scene = load("res://Scenes/ufo_enemy.tscn")
 @onready var globals = get_node("/root/GlobalStats")
 @onready var bgm = get_node("/root/Bgm")
 @onready var asteroid_timer = get_node("AsteroidTimer")
@@ -34,8 +35,24 @@ func _on_AsteroidTimer_timeout():
 	#print("spawning ",count, " asteroids.")
 	for x in range(0,count):
 		spawn()
-	
+
 func spawn():
+	var c0 = randf_range(0,1)<0.1
+	if c0:
+		spawn_enemy()
+	else:
+		spawn_asteroid()
+	
+	
+func spawn_enemy():
+	var ufo = ufo_scene.instantiate()
+	var left = get_node("AsteroidTimer/AsteroidSpawnLeft").position
+	var right = get_node("AsteroidTimer/AsteroidSpawnRight").position
+	var pos = left + (right - left) * randf_range(0,1) # spawn-pos (between left and right)
+	ufo.position = pos
+	add_child(ufo)
+	
+func spawn_asteroid():
 	var c1 = randf_range(0,1)>globals.asteroid_ratio	
 	var asteroid = asteroid_scene.instantiate() if c1 else big_asteroid_scene.instantiate()
 	#var sprite = asteroid.get_children()[0]
@@ -66,6 +83,7 @@ func spawn():
 	#asteroid._initialize()	
 	globals.calculate_asteroid_stats()
 	#print(self.get_child_count()) #check if asteroids are auto-destroyed
+	
 
 func _on_player_hit():
 	print("LAST:",last_player_hp)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qqvrygbcsh86"
-path="res://.godot/imported/Stars_Red.png-6718cf5cfe558751fa649e968dcf0fd4.ctex"
+uid="uid://dce7v4o6dtp2k"
+path="res://.godot/imported/red_projectile_normal.png-e8fdcad591a9d387544d22d35522333a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Level/Stars/Stars_Red.png"
-dest_files=["res://.godot/imported/Stars_Red.png-6718cf5cfe558751fa649e968dcf0fd4.ctex"]
+source_file="res://sprites/SpaceShips/projectiles/red_projectile_normal.png"
+dest_files=["res://.godot/imported/red_projectile_normal.png-e8fdcad591a9d387544d22d35522333a.ctex"]
 
 [params]
 

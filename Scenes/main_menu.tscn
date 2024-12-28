@@ -142,6 +142,7 @@ offset_bottom = 131.0
 grow_horizontal = 2
 theme = ExtResource("3_m68ly")
 theme_override_fonts/font = ExtResource("5_hhynl")
+theme_override_font_sizes/font_size = 32
 text = "Sm4shter0IDS"
 uppercase = true
 
@@ -260,6 +261,7 @@ grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 theme = ExtResource("3_m68ly")
 theme_override_fonts/font = ExtResource("13_cudif")
+theme_override_font_sizes/font_size = 17
 text = "Highscore:
 99999Pts"
 

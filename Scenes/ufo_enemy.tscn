@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgq1s5mnkmwnt"]
+
+[ext_resource type="Script" path="res://Scripts/ufo_enemy.gd" id="1_720d4"]
+[ext_resource type="Texture2D" uid="uid://cvuxc5u1qkgpa" path="res://sprites/enemies/ufo_green.png" id="2_otkpr"]
+[ext_resource type="Script" path="res://Scripts/Spaceship.gd" id="3_rcie7"]
+[ext_resource type="AudioStream" uid="uid://dutx6dc7bxcrw" path="res://sounds/fx/shots/EnergyGun_Shoot1A.wav" id="4_eaoqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehvfi"]
+size = Vector2(54, 60)
+
+[node name="UfoEnemy" type="Node2D"]
+script = ExtResource("1_720d4")
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[node name="SpaceshipUFO" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+
+[node name="UFOSprite" type="Sprite2D" parent="SpaceshipUFO"]
+texture_filter = 1
+rotation = -3.14159
+texture = ExtResource("2_otkpr")
+script = ExtResource("3_rcie7")
+cannon_paths = Array[NodePath]([NodePath("MainCannon")])
+shot_sounds = Array[AudioStream]([ExtResource("4_eaoqg")])
+shot_directions = Array[Vector2]([Vector2(0, 1)])
+
+[node name="MainCannon" type="AudioStreamPlayer2D" parent="SpaceshipUFO/UFOSprite"]
+position = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpaceshipUFO"]
+shape = SubResource("RectangleShape2D_ehvfi")
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="area_entered" from="SpaceshipUFO" to="." method="_on_area_area_entered"]
+[connection signal="body_entered" from="SpaceshipUFO" to="." method="_on_area_body_entered"]

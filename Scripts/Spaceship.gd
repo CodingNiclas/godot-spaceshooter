@@ -37,7 +37,7 @@ func shoot(cannon,direction):
 	var shot = projectile_scene.instantiate()
 	shot.direction = direction
 	#get_node("CharacterBody2D").add_child(shot)
-	get_tree().get_root().get_node("Node2D_Level").add_child(shot)
+	get_tree().get_root().add_child(shot)#.get_node("Node2D_Level").add_child(shot)
 	shot.global_position = pos
 	#print(get_tree().get_root().get_node("Node2D_Level").get_child_count())
 	# play randomized sfx

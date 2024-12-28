@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dk8oumh7o061w"]
+[gd_scene load_steps=35 format=3 uid="uid://dk8oumh7o061w"]
 
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_8g67v"]
 [ext_resource type="Texture2D" uid="uid://l8bemr4j76sg" path="res://sprites/ui/play_grayscale.png" id="3_lyqqm"]
@@ -13,7 +13,6 @@
 [ext_resource type="StyleBox" uid="uid://c0na7x30ikut8" path="res://Scenes/slider_bg.tres" id="9_onohu"]
 [ext_resource type="Texture2D" uid="uid://duuj432by24mn" path="res://sprites/Items/coins/coin4_atlas.png" id="11_dvaop"]
 [ext_resource type="Texture2D" uid="uid://bwhk5k8l0bwil" path="res://sprites/ui/button48.png" id="13_hxs0t"]
-[ext_resource type="FontFile" uid="uid://da8pt74ksrten" path="res://fonts/CONCHARSX2.png" id="13_popwy"]
 [ext_resource type="Texture2D" uid="uid://b4kx85rkkia2" path="res://sprites/ui/button48_disabled.png" id="13_rb5pr"]
 [ext_resource type="Texture2D" uid="uid://dm2ceu0tia4ge" path="res://sprites/ui/button48_pressed.png" id="14_36bg3"]
 [ext_resource type="Texture2D" uid="uid://dk3u7glkpc378" path="res://sprites/ui/button48_hover.png" id="15_2na2r"]
@@ -37,8 +36,11 @@ shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti43u"]
-bg_color = Color(0, 0.72549, 0.388235, 0.682353)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ili7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3hf"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.552941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31bfj"]
 bg_color = Color(0, 0.72549, 0.388235, 0.854902)
@@ -46,11 +48,8 @@ bg_color = Color(0, 0.72549, 0.388235, 0.854902)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygrg0"]
 bg_color = Color(0, 0.72549, 0.388235, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew3hf"]
-bg_color = Color(0.145098, 0.145098, 0.145098, 0.552941)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ili7"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ti43u"]
+bg_color = Color(0, 0.72549, 0.388235, 0.682353)
 
 [sub_resource type="MeshTexture" id="MeshTexture_35hpk"]
 
@@ -175,7 +174,6 @@ offset_right = 45.0
 offset_bottom = 21.0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 32
 text = "HP 0"
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -191,7 +189,6 @@ offset_bottom = 32.0
 grow_horizontal = 0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 32
 text = "Score
 0"
 horizontal_alignment = 1
@@ -215,7 +212,6 @@ offset_bottom = 12.0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
 theme_override_colors/font_color = Color(0.968627, 0.764706, 0, 1)
-theme_override_font_sizes/font_size = 32
 text = "x00"
 
 [node name="LvlLabel" type="Label" parent="."]
@@ -249,7 +245,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="GameOverScreen" type="TextureRect" parent="."]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -276,7 +271,6 @@ offset_right = 106.0
 offset_bottom = 26.0
 scale = Vector2(3.5, 3.5)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 45
 text = "you are dead"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -313,15 +307,15 @@ offset_right = 184.0
 offset_bottom = 151.0
 scale = Vector2(2, 2)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 8
 text = "Upgrade Ship"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="CurrentShip" type="Sprite2D" parent="GameOverScreen/UpgradeLabel"]
-position = Vector2(50, 27.5)
-scale = Vector2(0.285714, 0.285714)
+position = Vector2(50, 43)
+scale = Vector2(0.401, 0.401)
 texture = ExtResource("9_l1egr")
 
 [node name="UpgradeButton_old" type="Button" parent="GameOverScreen/UpgradeLabel"]
@@ -330,11 +324,11 @@ layout_mode = 0
 offset_top = 42.0
 offset_right = 96.0
 offset_bottom = 63.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_ti43u")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5ili7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ew3hf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_31bfj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ygrg0")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ew3hf")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5ili7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ti43u")
 disabled = true
 text = "upgrade ship
 (5 coins)"
@@ -342,10 +336,10 @@ text = "upgrade ship
 [node name="UpgradeButton" type="TextureButton" parent="GameOverScreen/UpgradeLabel"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -6.0
-offset_top = 47.0
-offset_right = 108.0
-offset_bottom = 85.0
+offset_left = -7.5
+offset_top = 71.5
+offset_right = 106.5
+offset_bottom = 109.5
 texture_normal = ExtResource("13_hxs0t")
 texture_pressed = ExtResource("14_36bg3")
 texture_hover = ExtResource("15_2na2r")
@@ -402,11 +396,11 @@ stretch_mode = 4
 [node name="Text" type="Label" parent="GameOverScreen/RestartButton"]
 layout_mode = 0
 offset_left = 17.0
-offset_top = 12.0
-offset_right = 81.0
-offset_bottom = 28.0
-scale = Vector2(2.5, 2.5)
+offset_top = 20.0
+offset_right = 185.0
+offset_bottom = 44.0
 theme = ExtResource("5_6vorb")
+theme_override_font_sizes/font_size = 24
 text = "Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -430,7 +424,7 @@ offset_top = 14.0
 offset_right = 156.0
 offset_bottom = 41.0
 theme = ExtResource("5_6vorb")
-theme_override_fonts/font = ExtResource("13_popwy")
+theme_override_font_sizes/font_size = 16
 text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -446,8 +440,7 @@ offset_right = -32.0
 offset_bottom = 25.0
 grow_horizontal = 2
 scale = Vector2(3, 3)
-theme = ExtResource("4")
-theme_override_fonts/font = ExtResource("8_q33bn")
+theme = ExtResource("5_6vorb")
 text = "00:00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -462,10 +455,11 @@ offset_right = 239.0
 offset_bottom = 511.0
 scale = Vector2(3, 3)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 10
 text = "try again"
 
 [node name="PauseScreen" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_kcwa8")
 anchors_preset = 8
@@ -492,7 +486,6 @@ offset_right = 106.0
 offset_bottom = 26.0
 scale = Vector2(3.5, 3.5)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 45
 text = "Game Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -521,7 +514,6 @@ offset_right = 143.0
 offset_bottom = 119.0
 scale = Vector2(2.5, 2.5)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 45
 text = "music volume"
 vertical_alignment = 1
 
@@ -551,7 +543,6 @@ offset_right = 143.0
 offset_bottom = 183.0
 scale = Vector2(2.5, 2.5)
 theme = ExtResource("5_6vorb")
-theme_override_font_sizes/font_size = 45
 text = "sfx volume"
 vertical_alignment = 1
 
